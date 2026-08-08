@@ -1,1017 +1,1816 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dice Coffee Adventure</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<title>Chapucero</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#dedbd2;
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* ==========================
+   CELULAR
+========================== */
+
+.phone{
+    width:100%;
+    max-width:430px;
+    height:100vh;
+    background:#5d8758;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 0 30px rgba(0,0,0,.15);
+}
+
+/* En computadora simula teléfono */
+
+@media(min-width:600px){
+
+    body{
+        align-items:center;
+        padding:20px;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      overflow: hidden;
-      background: #4f7b55;
+    .phone{
+        height:900px;
+        border-radius:34px;
+        border:8px solid #222;
+        overflow:hidden;
     }
 
-    /* ================================
-       APP
-    ================================= */
+}
 
-    .app {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      position: relative;
-    }
+/* ==========================
+   HEADER
+========================== */
 
-    /* ================================
-       MAPA PRINCIPAL
-    ================================= */
+.header{
+    height:85px;
+    background:#f7f0df;
 
-    .map-container {
-      flex: 1;
-      height: 100vh;
-      overflow-y: auto;
-      overflow-x: hidden;
-      position: relative;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(255,255,255,.05) 0 4px, transparent 5px),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,.04) 0 5px, transparent 6px),
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+
+    gap:6px;
+
+    padding:0 18px 10px;
+
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+
+    z-index:100;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.logo{
+    position:absolute;
+    top:12px;
+    left:18px;
+
+    font-size:17px;
+    font-weight:900;
+
+    color:#495f42;
+}
+
+.tab{
+    flex:1;
+    height:38px;
+
+    border:none;
+    border-radius:14px;
+
+    font-weight:900;
+    font-size:12px;
+
+    color:#776c59;
+    background:transparent;
+
+    cursor:pointer;
+}
+
+.tab.active{
+    background:#668d5c;
+    color:white;
+}
+
+/* ==========================
+   PANTALLAS
+========================== */
+
+.screen{
+    position:absolute;
+    top:85px;
+    bottom:0;
+    left:0;
+    right:0;
+
+    display:none;
+}
+
+.screen.active{
+    display:block;
+}
+
+/* =================================================
+   CAMINO
+================================================= */
+
+.map-screen{
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:
         linear-gradient(
-          180deg,
-          #668c63,
-          #547c58 40%,
-          #466d4e 100%
+        180deg,
+        #78a064,
+        #608752
         );
-      scroll-behavior: smooth;
+
+    scroll-behavior:smooth;
+}
+
+.map{
+    height:2050px;
+    position:relative;
+    overflow:hidden;
+}
+
+/* ==========================
+   TITULO
+========================== */
+
+.mapTitle{
+    position:absolute;
+    bottom:25px;
+    left:18px;
+
+    color:#f8f2dd;
+    z-index:20;
+}
+
+.mapTitle small{
+    font-size:12px;
+    opacity:.85;
+}
+
+.mapTitle h2{
+    font-size:24px;
+    margin-top:3px;
+}
+
+/* ==========================
+   DECORACIONES
+========================== */
+
+.cloud{
+    position:absolute;
+    width:100px;
+    height:38px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:40px;
+}
+
+.cloud:before,
+.cloud:after{
+    content:"";
+    position:absolute;
+
+    background:rgba(255,255,255,.15);
+    border-radius:50%;
+}
+
+.cloud:before{
+    width:45px;
+    height:45px;
+    top:-22px;
+    left:18px;
+}
+
+.cloud:after{
+    width:55px;
+    height:55px;
+    top:-30px;
+    right:12px;
+}
+
+.c1{
+    top:160px;
+    left:-25px;
+}
+
+.c2{
+    top:750px;
+    right:-25px;
+}
+
+.c3{
+    top:1370px;
+    left:-40px;
+}
+
+/* ==========================
+   PLANTAS
+========================== */
+
+.plant{
+    position:absolute;
+    font-size:45px;
+    opacity:.55;
+    filter:saturate(.7);
+}
+
+.plant1{
+    bottom:90px;
+    left:20px;
+}
+
+.plant2{
+    bottom:480px;
+    right:10px;
+}
+
+.plant3{
+    bottom:920px;
+    left:8px;
+}
+
+.plant4{
+    bottom:1320px;
+    right:10px;
+}
+
+/* ==========================
+   CAFÉ DECORATIVO
+========================== */
+
+.doodle{
+    position:absolute;
+    font-size:34px;
+    opacity:.38;
+    transform:rotate(-12deg);
+}
+
+.d1{
+    bottom:245px;
+    right:30px;
+}
+
+.d2{
+    bottom:650px;
+    left:30px;
+}
+
+.d3{
+    bottom:1030px;
+    right:25px;
+}
+
+.d4{
+    bottom:1450px;
+    left:35px;
+}
+
+/* ==========================
+   CASILLAS
+========================== */
+
+.tile{
+
+    position:absolute;
+
+    width:58px;
+    height:58px;
+
+    border-radius:15px;
+
+    background:#f3ead5;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:900;
+    font-size:15px;
+
+    color:#574c3b;
+
+    border:4px solid #fff6e6;
+
+    box-shadow:
+        0 6px 0 #477049,
+        0 10px 15px rgba(0,0,0,.15);
+
+    z-index:10;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.tile:hover{
+    transform:translateY(-3px);
+}
+
+/* desbloqueado */
+
+.tile.unlocked{
+    background:#f0ca69;
+    border-color:#ffeaaa;
+}
+
+/* actual */
+
+.tile.current{
+    background:#e8b94d;
+
+    box-shadow:
+        0 6px 0 #98732f,
+        0 0 0 7px rgba(255,224,130,.3);
+}
+
+/* bloqueado */
+
+.tile.locked{
+    background:#99a797;
+    border-color:#b8c2b4;
+    color:#667064;
+}
+
+/* ==========================
+   PUENTES ENTRE CASILLAS
+========================== */
+
+.bridge{
+
+    position:absolute;
+
+    background:#d8c89b;
+
+    height:14px;
+
+    border-radius:20px;
+
+    z-index:4;
+
+    opacity:.9;
+}
+
+/* ==========================
+   PERSONAJE
+========================== */
+
+.characterHolder{
+
+    position:absolute;
+
+    width:80px;
+    height:110px;
+
+    z-index:30;
+
+    bottom:80px;
+    left:150px;
+
+    animation:float 2s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
     }
 
-    .map {
-      position: relative;
-      min-height: 1900px;
-      width: 100%;
-      max-width: 850px;
-      margin: auto;
-      padding-top: 80px;
+    50%{
+        transform:translateY(-7px);
     }
+}
 
-    /* ================================
-       DECORACIONES DE CAFÉ
-    ================================= */
-
-    .coffee-decoration {
-      position: absolute;
-      opacity: 0.12;
-      font-size: 55px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .coffee-1 { top: 120px; left: 8%; transform: rotate(-15deg); }
-    .coffee-2 { top: 380px; right: 10%; transform: rotate(20deg); }
-    .coffee-3 { top: 650px; left: 12%; transform: rotate(18deg); }
-    .coffee-4 { top: 910px; right: 12%; transform: rotate(-20deg); }
-    .coffee-5 { top: 1180px; left: 10%; transform: rotate(-10deg); }
-    .coffee-6 { top: 1450px; right: 11%; transform: rotate(10deg); }
-    .coffee-7 { top: 1680px; left: 14%; transform: rotate(25deg); }
-
-    /* ================================
-       CAMINO
-    ================================= */
-
-    .path-line {
-      position: absolute;
-      width: 18px;
-      height: 1700px;
-      top: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.15;
-      background:
-        repeating-linear-gradient(
-          180deg,
-          #f5e7c7 0 25px,
-          transparent 25px 42px
-        );
-      border-radius: 30px;
-      z-index: 1;
-    }
-
-    /* ================================
-       NIVELES
-    ================================= */
-
-    .level {
-      position: absolute;
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      background: #eee5d0;
-      border: 6px solid #fff7e5;
-      box-shadow:
-        0 8px 0 rgba(51, 69, 48, 0.35),
-        0 12px 25px rgba(0,0,0,.15);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 800;
-      font-size: 22px;
-      color: #58482f;
-      cursor: pointer;
-      z-index: 5;
-      transition: .2s ease;
-    }
-
-    .level:hover {
-      transform: scale(1.08);
-    }
-
-    .level.locked {
-      background: #9ba89a;
-      border-color: #bac4b8;
-      color: #637061;
-      filter: saturate(.5);
-    }
-
-    .level.current {
-      background: #f2cc67;
-      border-color: #fff2b4;
-      box-shadow:
-        0 8px 0 #9d7534,
-        0 0 0 8px rgba(255, 227, 126, .22),
-        0 12px 25px rgba(0,0,0,.18);
-    }
-
-    .level .lock {
-      font-size: 25px;
-    }
-
-    /* Distribución serpiente */
-
-    .level-10 { top: 120px; left: 48%; }
-    .level-9  { top: 280px; left: 67%; }
-    .level-8  { top: 445px; left: 52%; }
-    .level-7  { top: 610px; left: 28%; }
-    .level-6  { top: 775px; left: 42%; }
-    .level-5  { top: 940px; left: 66%; }
-    .level-4  { top: 1105px; left: 50%; }
-    .level-3  { top: 1270px; left: 26%; }
-    .level-2  { top: 1435px; left: 39%; }
-    .level-1  { top: 1600px; left: 64%; }
-    .level-0  { top: 1740px; left: 44%; }
-
-    /* ================================
-       PERSONAJE DADO
-    ================================= */
-
-    .character-wrapper {
-      position: absolute;
-      top: 1650px;
-      left: calc(44% + 8px);
-      width: 130px;
-      height: 150px;
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    .character {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      background: #f7eee0;
-      border: 4px solid #4f4438;
-      border-radius: 19px;
-      left: 20px;
-      top: 25px;
-      box-shadow:
-        inset -7px -7px 0 rgba(0,0,0,.06),
-        0 7px 0 rgba(0,0,0,.16);
-      transition: background .3s;
-    }
-
-    .dot {
-      position: absolute;
-      width: 11px;
-      height: 11px;
-      background: #493e33;
-      border-radius: 50%;
-    }
-
-    .dot1 {
-      top: 18px;
-      left: 18px;
-    }
-
-    .dot2 {
-      top: 34px;
-      left: 34px;
-    }
-
-    .dot3 {
-      bottom: 18px;
-      right: 18px;
-    }
-
-    /* Cara */
-
-    .eye {
-      position: absolute;
-      width: 6px;
-      height: 9px;
-      background: #26221d;
-      border-radius: 50%;
-      top: 51px;
-      z-index: 10;
-    }
-
-    .eye-left {
-      left: 26px;
-    }
-
-    .eye-right {
-      right: 26px;
-    }
-
-    .mouth {
-      position: absolute;
-      width: 15px;
-      height: 7px;
-      border-bottom: 3px solid #26221d;
-      border-radius: 50%;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-    }
-
-    /* Brazos */
-
-    .arm {
-      position: absolute;
-      width: 42px;
-      height: 7px;
-      background: #493e33;
-      border-radius: 10px;
-      top: 65px;
-    }
-
-    .arm-left {
-      left: -14px;
-      transform: rotate(-30deg);
-    }
-
-    .arm-right {
-      right: -14px;
-      transform: rotate(30deg);
-    }
-
-    .hand {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      background: #493e33;
-      border-radius: 50%;
-      top: -4px;
-    }
-
-    .arm-left .hand {
-      left: -3px;
-    }
-
-    .arm-right .hand {
-      right: -3px;
-    }
-
-    /* Piernas */
-
-    .leg {
-      position: absolute;
-      width: 7px;
-      height: 35px;
-      background: #493e33;
-      border-radius: 10px;
-      bottom: -30px;
-    }
-
-    .leg-left {
-      left: 21px;
-      transform: rotate(7deg);
-    }
-
-    .leg-right {
-      right: 21px;
-      transform: rotate(-7deg);
-    }
-
-    .shoe {
-      position: absolute;
-      width: 21px;
-      height: 10px;
-      background: #493e33;
-      border-radius: 50% 50% 40% 40%;
-      bottom: -7px;
-    }
-
-    .leg-left .shoe {
-      left: -7px;
-    }
-
-    .leg-right .shoe {
-      right: -7px;
-    }
-
-    /* ================================
-       ACCESORIOS PERSONAJE
-    ================================= */
-
-    .hat {
-      position: absolute;
-      width: 54px;
-      height: 22px;
-      background: #593d2b;
-      border-radius: 20px 20px 5px 5px;
-      top: -16px;
-      left: 13px;
-      display: none;
-      z-index: 15;
-    }
-
-    .hat::after {
-      content: "";
-      position: absolute;
-      width: 32px;
-      height: 7px;
-      background: #593d2b;
-      border-radius: 10px;
-      right: -18px;
-      bottom: 0px;
-    }
-
-    .glasses {
-      position: absolute;
-      left: 14px;
-      top: 44px;
-      width: 52px;
-      height: 16px;
-      z-index: 15;
-      display: none;
-    }
-
-    .glass {
-      position: absolute;
-      width: 20px;
-      height: 15px;
-      border: 3px solid #26221d;
-      border-radius: 50%;
-    }
-
-    .glass.left {
-      left: 0;
-    }
-
-    .glass.right {
-      right: 0;
-    }
-
-    .glasses::after {
-      content: "";
-      position: absolute;
-      width: 11px;
-      height: 3px;
-      background: #26221d;
-      left: 21px;
-      top: 6px;
-    }
-
-    /* ================================
-       BOTÓN PERSONALIZAR
-    ================================= */
-
-    .customize-tab {
-      position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      width: 65px;
-      height: 160px;
-      border: none;
-      border-radius: 25px 0 0 25px;
-      background: #f3d887;
-      box-shadow: -5px 6px 20px rgba(0,0,0,.18);
-      cursor: pointer;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .customize-tab span {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #493c2c;
-    }
-
-    /* ================================
-       PANEL PERSONALIZACIÓN
-    ================================= */
-
-    .customization-panel {
-      position: fixed;
-      top: 0;
-      right: -370px;
-      width: 360px;
-      height: 100vh;
-      background: #faf6ec;
-      z-index: 200;
-      transition: right .35s ease;
-      box-shadow: -10px 0 30px rgba(0,0,0,.18);
-      padding: 30px;
-      overflow-y: auto;
-    }
-
-    .customization-panel.open {
-      right: 0;
-    }
-
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 30px;
-    }
-
-    .panel-header h2 {
-      color: #3e553f;
-      font-size: 25px;
-    }
-
-    .close-panel {
-      border: none;
-      background: #e9e1cf;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    .preview {
-      height: 190px;
-      background: #dfe8d8;
-      border-radius: 25px;
-      margin-bottom: 25px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mini-character {
-      transform: scale(1.1);
-      position: relative;
-      width: 80px;
-      height: 80px;
-    }
-
-    .section-title {
-      font-size: 14px;
-      color: #746a5b;
-      margin-bottom: 12px;
-      margin-top: 22px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: bold;
-    }
-
-    .options {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .option {
-      height: 80px;
-      border-radius: 18px;
-      border: 3px solid transparent;
-      background: #eee8da;
-      cursor: pointer;
-      transition: .2s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 28px;
-    }
-
-    .option:hover {
-      transform: translateY(-3px);
-    }
-
-    .option.selected {
-      border-color: #6b8b65;
-      background: #e3eadc;
-    }
-
-    .color-dot {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 4px solid rgba(255,255,255,.7);
-      box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    }
-
-    .cream { background: #f7eee0; }
-    .yellow { background: #f4d47d; }
-    .pink { background: #df9ba9; }
-    .blue { background: #8bb7c8; }
-    .green { background: #9eba94; }
-    .brown { background: #ad7958; }
-
-    /* ================================
-       CABECERA MAPA
-    ================================= */
-
-    .map-title {
-      position: fixed;
-      top: 20px;
-      left: 25px;
-      background: rgba(248, 242, 225, .92);
-      backdrop-filter: blur(10px);
-      padding: 13px 20px;
-      border-radius: 20px;
-      z-index: 50;
-      box-shadow: 0 8px 20px rgba(0,0,0,.1);
-    }
-
-    .map-title strong {
-      display: block;
-      color: #3e583f;
-      font-size: 17px;
-    }
-
-    .map-title span {
-      font-size: 12px;
-      color: #756d61;
-    }
-
-    /* ================================
-       MOBILE
-    ================================= */
-
-    @media(max-width: 650px) {
-
-      .map {
-        min-width: 100%;
-      }
-
-      .level {
-        width: 65px;
-        height: 65px;
-        font-size: 18px;
-      }
-
-      .level-10 { left: 44%; }
-      .level-9  { left: 66%; }
-      .level-8  { left: 50%; }
-      .level-7  { left: 20%; }
-      .level-6  { left: 38%; }
-      .level-5  { left: 66%; }
-      .level-4  { left: 46%; }
-      .level-3  { left: 19%; }
-      .level-2  { left: 35%; }
-      .level-1  { left: 65%; }
-      .level-0  { left: 39%; }
-
-      .character-wrapper {
-        left: calc(39% - 5px);
-      }
-
-      .customize-tab {
-        width: 50px;
-      }
-
-      .customization-panel {
-        width: 90vw;
-        right: -90vw;
-      }
-
-      .map-title {
-        left: 14px;
-        top: 14px;
-      }
-    }
-
-  </style>
+/* dado */
+
+.dice{
+
+    width:66px;
+    height:66px;
+
+    position:absolute;
+
+    left:7px;
+
+    background:#f5e9d5;
+
+    border:4px solid #403b34;
+
+    border-radius:18px;
+
+    box-shadow:
+        inset -6px -6px 0 rgba(0,0,0,.05),
+        0 6px 0 rgba(0,0,0,.15);
+}
+
+/* puntitos */
+
+.dot{
+    width:9px;
+    height:9px;
+
+    background:#39352f;
+
+    border-radius:50%;
+
+    position:absolute;
+}
+
+.dot1{
+    top:13px;
+    left:13px;
+}
+
+.dot2{
+    top:27px;
+    left:27px;
+}
+
+.dot3{
+    bottom:13px;
+    right:13px;
+}
+
+/* cara */
+
+.eye{
+    position:absolute;
+
+    width:5px;
+    height:8px;
+
+    background:#25221e;
+    border-radius:50%;
+
+    top:43px;
+}
+
+.eye.left{
+    left:20px;
+}
+
+.eye.right{
+    right:20px;
+}
+
+.smile{
+
+    position:absolute;
+
+    width:13px;
+    height:7px;
+
+    border-bottom:3px solid #29251f;
+
+    border-radius:50%;
+
+    bottom:7px;
+    left:50%;
+
+    transform:translateX(-50%);
+}
+
+/* brazos */
+
+.arm{
+
+    width:27px;
+    height:6px;
+
+    position:absolute;
+
+    background:#403a33;
+
+    top:46px;
+
+    border-radius:10px;
+}
+
+.arm.left{
+    left:-18px;
+    transform:rotate(-25deg);
+}
+
+.arm.right{
+    right:-18px;
+    transform:rotate(25deg);
+}
+
+.hand{
+
+    position:absolute;
+
+    width:10px;
+    height:10px;
+
+    background:#403a33;
+    border-radius:50%;
+
+    top:-2px;
+}
+
+.arm.left .hand{
+    left:-4px;
+}
+
+.arm.right .hand{
+    right:-4px;
+}
+
+/* piernas */
+
+.leg{
+
+    position:absolute;
+
+    width:6px;
+    height:26px;
+
+    background:#403a33;
+
+    bottom:-23px;
+
+    border-radius:10px;
+}
+
+.leg.left{
+    left:17px;
+}
+
+.leg.right{
+    right:17px;
+}
+
+.foot{
+
+    position:absolute;
+
+    width:17px;
+    height:9px;
+
+    background:#403a33;
+
+    border-radius:50%;
+
+    bottom:-5px;
+}
+
+.leg.left .foot{
+    left:-7px;
+}
+
+.leg.right .foot{
+    right:-7px;
+}
+
+/* =================================================
+   PANTALLA PERSONAJE
+================================================= */
+
+.character-screen{
+
+    background:#f5efe1;
+
+    overflow-y:auto;
+
+    padding-bottom:50px;
+}
+
+/* ==========================
+   HERO PERSONAJE
+========================== */
+
+.characterHero{
+
+    min-height:410px;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #a5c28d 0,
+        #82a56e 55%,
+        #71925f 100%
+    );
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding-top:28px;
+
+    position:relative;
+}
+
+.characterHero h1{
+
+    color:white;
+    font-size:23px;
+    margin-bottom:10px;
+}
+
+.characterHero p{
+
+    color:rgba(255,255,255,.75);
+    font-size:12px;
+}
+
+/* personaje grande */
+
+.bigCharacter{
+
+    transform:scale(2.2);
+
+    margin-top:105px;
+}
+
+/* ==========================
+   BOTÓN PERSONALIZAR
+========================== */
+
+.customButton{
+
+    margin-top:110px;
+
+    border:none;
+
+    background:#f6e8bd;
+
+    color:#4e593f;
+
+    border-radius:18px;
+
+    padding:12px 25px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 0 rgba(0,0,0,.1);
+}
+
+/* ==========================
+   MEDALLAS
+========================== */
+
+.medals{
+
+    padding:24px 20px 50px;
+}
+
+.medalsHeader{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.medalsHeader h2{
+
+    color:#4b5944;
+    font-size:22px;
+}
+
+.medalsHeader span{
+
+    background:#e6ddca;
+
+    border-radius:20px;
+
+    padding:7px 11px;
+
+    font-size:12px;
+
+    color:#716758;
+
+    font-weight:bold;
+}
+
+.medalGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px 12px;
+}
+
+.medalSlot{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:7px;
+
+    text-align:center;
+}
+
+.medalCircle{
+
+    width:65px;
+    height:65px;
+
+    border:3px dashed #bcb3a0;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:29px;
+
+    background:#ede6d9;
+
+    color:#aea695;
+}
+
+.medalCircle.earned{
+
+    border-style:solid;
+
+    background:#e6c769;
+
+    border-color:#f6dd95;
+
+    box-shadow:0 5px 0 #b18f3e;
+}
+
+.medalName{
+
+    font-size:9px;
+
+    line-height:1.2;
+
+    color:#777061;
+}
+
+/* ==========================
+   PERSONALIZACION
+========================== */
+
+.customizer{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#f7f1e5;
+
+    z-index:300;
+
+    display:none;
+
+    overflow-y:auto;
+
+    padding-bottom:40px;
+}
+
+.customizer.open{
+    display:block;
+}
+
+.customHeader{
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 20px;
+
+    gap:15px;
+
+    background:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.back{
+
+    border:none;
+
+    background:#eee8db;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.previewBox{
+
+    height:270px;
+
+    background:#8baa74;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.previewScale{
+    transform:scale(2);
+}
+
+/* ==========================
+   OPCIONES
+========================== */
+
+.customContent{
+    padding:20px;
+}
+
+.sectionTitle{
+
+    font-size:13px;
+
+    color:#776f60;
+
+    font-weight:900;
+
+    margin:20px 0 12px;
+}
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+}
+
+.option{
+
+    height:70px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#e9e2d3;
+
+    cursor:pointer;
+
+    font-size:26px;
+
+    border:3px solid transparent;
+}
+
+.option.selected{
+
+    border-color:#719467;
+    background:#dde7d6;
+}
+
+.color{
+
+    width:35px;
+    height:35px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    border:3px solid white;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="phone">
 
-  <!-- =========================
-       MAPA
-  ========================== -->
+    <!-- =====================
+         HEADER
+    ====================== -->
 
-  <main class="map-container" id="mapContainer">
+    <header class="header">
 
-    <div class="map">
+        <div class="logo">
+            CHAPUCERO
+        </div>
 
-      <div class="map-title">
-        <strong>☕ Ruta del Café</strong>
-        <span>Nivel actual: 0</span>
-      </div>
+        <button
+            class="tab active"
+            id="mapTab"
+            onclick="showScreen('map')">
 
-      <!-- Decoración -->
-      <div class="coffee-decoration coffee-1">☕</div>
-      <div class="coffee-decoration coffee-2">🫘</div>
-      <div class="coffee-decoration coffee-3">☕</div>
-      <div class="coffee-decoration coffee-4">🫘</div>
-      <div class="coffee-decoration coffee-5">☕</div>
-      <div class="coffee-decoration coffee-6">🫘</div>
-      <div class="coffee-decoration coffee-7">☕</div>
+            CAMINO
 
-      <div class="path-line"></div>
+        </button>
 
-      <!-- Niveles superiores bloqueados -->
+        <button
+            class="tab"
+            id="characterTab"
+            onclick="showScreen('character')">
 
-      <div class="level level-10 locked">
-        <span class="lock">🔒</span>
-      </div>
+            PERSONAJE
 
-      <div class="level level-9 locked">
-        <span class="lock">🔒</span>
-      </div>
+        </button>
 
-      <div class="level level-8 locked">
-        <span class="lock">🔒</span>
-      </div>
+    </header>
 
-      <div class="level level-7 locked">
-        <span class="lock">🔒</span>
-      </div>
+    <!-- =================================
+         MAPA
+    ================================== -->
 
-      <div class="level level-6 locked">
-        <span class="lock">🔒</span>
-      </div>
+    <section
+        class="screen map-screen active"
+        id="mapScreen">
 
-      <div class="level level-5 locked">
-        <span class="lock">🔒</span>
-      </div>
+        <div class="map">
 
-      <div class="level level-4 locked">
-        <span class="lock">🔒</span>
-      </div>
+            <!-- decoraciones -->
 
-      <div class="level level-3 locked">
-        <span class="lock">🔒</span>
-      </div>
+            <div class="cloud c1"></div>
+            <div class="cloud c2"></div>
+            <div class="cloud c3"></div>
 
-      <div class="level level-2 locked">
-        <span class="lock">🔒</span>
-      </div>
+            <div class="plant plant1">🌿</div>
+            <div class="plant plant2">🌱</div>
+            <div class="plant plant3">🌿</div>
+            <div class="plant plant4">🌱</div>
 
-      <div class="level level-1">
-        1
-      </div>
+            <div class="doodle d1">☕</div>
+            <div class="doodle d2">🫘</div>
+            <div class="doodle d3">🥐</div>
+            <div class="doodle d4">☕</div>
 
-      <div class="level level-0 current">
-        0
-      </div>
 
-      <!-- PERSONAJE -->
+            <!-- =====================
+                 CASILLAS
+                 Desde abajo hacia arriba
+            ====================== -->
 
-      <div class="character-wrapper">
+            <div class="tile current"
+                style="bottom:110px; left:155px;">
+                0
+            </div>
 
-        <div class="character" id="mainCharacter">
+            <div class="bridge"
+                style="
+                bottom:152px;
+                left:205px;
+                width:66px;
+                transform:rotate(-20deg);
+                ">
+            </div>
 
-          <div class="hat" id="mainHat"></div>
+            <div class="tile unlocked"
+                style="bottom:170px; left:250px;">
+                1
+            </div>
 
-          <div class="glasses" id="mainGlasses">
-            <div class="glass left"></div>
-            <div class="glass right"></div>
-          </div>
+            <div class="bridge"
+                style="
+                bottom:228px;
+                left:246px;
+                width:65px;
+                transform:rotate(70deg);
+                ">
+            </div>
 
-          <div class="dot dot1"></div>
-          <div class="dot dot2"></div>
-          <div class="dot dot3"></div>
+            <div class="tile locked"
+                style="bottom:270px; left:270px;">
+                🔒
+            </div>
 
-          <div class="eye eye-left"></div>
-          <div class="eye eye-right"></div>
+            <div class="bridge"
+                style="
+                bottom:327px;
+                left:215px;
+                width:78px;
+                transform:rotate(145deg);
+                ">
+            </div>
 
-          <div class="mouth"></div>
+            <div class="tile locked"
+                style="bottom:340px; left:160px;">
+                🔒
+            </div>
 
-          <div class="arm arm-left">
-            <div class="hand"></div>
-          </div>
+            <div class="bridge"
+                style="
+                bottom:390px;
+                left:111px;
+                width:74px;
+                transform:rotate(150deg);
+                ">
+            </div>
 
-          <div class="arm arm-right">
-            <div class="hand"></div>
-          </div>
+            <div class="tile locked"
+                style="bottom:420px; left:65px;">
+                🔒
+            </div>
 
-          <div class="leg leg-left">
-            <div class="shoe"></div>
-          </div>
+            <div class="bridge"
+                style="
+                bottom:478px;
+                left:79px;
+                width:63px;
+                transform:rotate(70deg);
+                ">
+            </div>
 
-          <div class="leg leg-right">
-            <div class="shoe"></div>
-          </div>
+            <div class="tile locked"
+                style="bottom:520px; left:95px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:565px;
+                left:139px;
+                width:75px;
+                transform:rotate(22deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:590px; left:190px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:648px;
+                left:223px;
+                width:70px;
+                transform:rotate(55deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:690px; left:245px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:740px;
+                left:174px;
+                width:100px;
+                transform:rotate(158deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:765px; left:100px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:820px;
+                left:80px;
+                width:60px;
+                transform:rotate(80deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:860px; left:90px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:910px;
+                left:130px;
+                width:100px;
+                transform:rotate(18deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:940px; left:205px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:995px;
+                left:245px;
+                width:75px;
+                transform:rotate(54deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1040px; left:270px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1090px;
+                left:190px;
+                width:105px;
+                transform:rotate(165deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1110px; left:115px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1165px;
+                left:80px;
+                width:70px;
+                transform:rotate(95deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1210px; left:80px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1260px;
+                left:120px;
+                width:105px;
+                transform:rotate(20deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1290px; left:200px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1345px;
+                left:240px;
+                width:70px;
+                transform:rotate(70deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1390px; left:255px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1445px;
+                left:180px;
+                width:100px;
+                transform:rotate(160deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1470px; left:110px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1525px;
+                left:75px;
+                width:75px;
+                transform:rotate(100deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1570px; left:80px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1625px;
+                left:120px;
+                width:110px;
+                transform:rotate(20deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1650px; left:210px;">
+                🔒
+            </div>
+
+            <div class="bridge"
+                style="
+                bottom:1710px;
+                left:245px;
+                width:70px;
+                transform:rotate(70deg);
+                ">
+            </div>
+
+            <div class="tile locked"
+                style="bottom:1750px; left:260px;">
+                🏆
+            </div>
+
+            <!-- PERSONAJE EN NIVEL 0 -->
+
+            <div
+                class="characterHolder"
+                id="mapCharacter">
+
+                <div class="dice">
+
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
+
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+
+                    <div class="smile"></div>
+
+                    <div class="arm left">
+                        <div class="hand"></div>
+                    </div>
+
+                    <div class="arm right">
+                        <div class="hand"></div>
+                    </div>
+
+                    <div class="leg left">
+                        <div class="foot"></div>
+                    </div>
+
+                    <div class="leg right">
+                        <div class="foot"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="mapTitle">
+
+                <small>
+                    TU AVENTURA
+                </small>
+
+                <h2>
+                    Nivel 0
+                </h2>
+
+            </div>
 
         </div>
 
-      </div>
+    </section>
 
-    </div>
-  </main>
+    <!-- =================================
+         PERSONAJE
+    ================================== -->
 
-  <!-- BOTÓN LATERAL -->
+    <section
+        class="screen character-screen"
+        id="characterScreen">
 
-  <button class="customize-tab" onclick="togglePanel()">
-    <span>PERSONALIZAR ✦</span>
-  </button>
+        <!-- PARTE SUPERIOR -->
 
-  <!-- =========================
-       PERSONALIZACIÓN
-  ========================== -->
+        <div class="characterHero">
 
-  <aside class="customization-panel" id="customPanel">
+            <h1>
+                Tu personaje
+            </h1>
 
-    <div class="panel-header">
-      <h2>Tu dado</h2>
+            <p>
+                Hazlo completamente tuyo
+            </p>
 
-      <button class="close-panel" onclick="togglePanel()">
-        ✕
-      </button>
-    </div>
+            <div class="bigCharacter">
 
+                <div
+                    class="dice"
+                    id="profileDice">
 
-    <div class="preview">
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
 
-      <div class="mini-character">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
 
-        <div class="character" id="previewCharacter">
+                    <div class="smile"></div>
 
-          <div class="hat" id="previewHat"></div>
+                    <div class="arm left">
+                        <div class="hand"></div>
+                    </div>
 
-          <div class="glasses" id="previewGlasses">
-            <div class="glass left"></div>
-            <div class="glass right"></div>
-          </div>
+                    <div class="arm right">
+                        <div class="hand"></div>
+                    </div>
 
-          <div class="dot dot1"></div>
-          <div class="dot dot2"></div>
-          <div class="dot dot3"></div>
+                    <div class="leg left">
+                        <div class="foot"></div>
+                    </div>
 
-          <div class="eye eye-left"></div>
-          <div class="eye eye-right"></div>
+                    <div class="leg right">
+                        <div class="foot"></div>
+                    </div>
 
-          <div class="mouth"></div>
+                </div>
 
-          <div class="arm arm-left">
-            <div class="hand"></div>
-          </div>
+            </div>
 
-          <div class="arm arm-right">
-            <div class="hand"></div>
-          </div>
+            <button
+                class="customButton"
+                onclick="openCustomizer()">
 
-          <div class="leg leg-left">
-            <div class="shoe"></div>
-          </div>
+                ✦ PERSONALIZAR
 
-          <div class="leg leg-right">
-            <div class="shoe"></div>
-          </div>
+            </button>
 
         </div>
 
-      </div>
+        <!-- =====================
+             MEDALLAS
+        ====================== -->
+
+        <div class="medals">
+
+            <div class="medalsHeader">
+
+                <h2>
+                    Mis medallas
+                </h2>
+
+                <span>
+                    2 / 20
+                </span>
+
+            </div>
+
+            <div class="medalGrid">
+
+                <div class="medalSlot">
+
+                    <div class="medalCircle earned">
+                        ☕
+                    </div>
+
+                    <div class="medalName">
+                        Primer paso
+                    </div>
+
+                </div>
+
+                <div class="medalSlot">
+
+                    <div class="medalCircle earned">
+                        🎲
+                    </div>
+
+                    <div class="medalName">
+                        Chapucero
+                    </div>
+
+                </div>
+
+                <div class="medalSlot">
+
+                    <div class="medalCircle">
+                        ?
+                    </div>
+
+                    <div class="medalName">
+                        ???
+                    </div>
+
+                </div>
+
+                <div class="medalSlot">
+
+                    <div class="medalCircle">
+                        ?
+                    </div>
+
+                    <div class="medalName">
+                        ???
+                    </div>
+
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+                <div class="medalSlot">
+                    <div class="medalCircle">?</div>
+                    <div class="medalName">???</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =================================
+         PERSONALIZADOR
+    ================================== -->
+
+    <div
+        class="customizer"
+        id="customizer">
+
+        <div class="customHeader">
+
+            <button
+                class="back"
+                onclick="closeCustomizer()">
+
+                ←
+
+            </button>
+
+            <strong>
+                Personalizar
+            </strong>
+
+        </div>
+
+        <div class="previewBox">
+
+            <div class="previewScale">
+
+                <div
+                    class="dice"
+                    id="previewDice">
+
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
+
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+
+                    <div class="smile"></div>
+
+                    <div class="arm left">
+                        <div class="hand"></div>
+                    </div>
+
+                    <div class="arm right">
+                        <div class="hand"></div>
+                    </div>
+
+                    <div class="leg left">
+                        <div class="foot"></div>
+                    </div>
+
+                    <div class="leg right">
+                        <div class="foot"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="customContent">
+
+            <div class="sectionTitle">
+                COLOR
+            </div>
+
+            <div class="options">
+
+                <button
+                    class="option selected"
+                    onclick="changeColor('#f5e9d5',this)">
+
+                    <div
+                        class="color"
+                        style="background:#f5e9d5">
+                    </div>
+
+                </button>
+
+                <button
+                    class="option"
+                    onclick="changeColor('#e8c462',this)">
+
+                    <div
+                        class="color"
+                        style="background:#e8c462">
+                    </div>
+
+                </button>
+
+                <button
+                    class="option"
+                    onclick="changeColor('#9fc1a1',this)">
+
+                    <div
+                        class="color"
+                        style="background:#9fc1a1">
+                    </div>
+
+                </button>
+
+                <button
+                    class="option"
+                    onclick="changeColor('#a8bed3',this)">
+
+                    <div
+                        class="color"
+                        style="background:#a8bed3">
+                    </div>
+
+                </button>
+
+            </div>
+
+            <div class="sectionTitle">
+                CABEZA
+            </div>
+
+            <div class="options">
+
+                <button class="option">
+                    ✕
+                </button>
+
+                <button class="option">
+                    🧢
+                </button>
+
+                <button class="option">
+                    🎩
+                </button>
+
+                <button class="option">
+                    🔒
+                </button>
+
+            </div>
+
+            <div class="sectionTitle">
+                CARA
+            </div>
+
+            <div class="options">
+
+                <button class="option">
+                    🙂
+                </button>
+
+                <button class="option">
+                    😎
+                </button>
+
+                <button class="option">
+                    🤓
+                </button>
+
+                <button class="option">
+                    🔒
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
-
-
-    <!-- COLOR -->
-
-    <div class="section-title">
-      Color del dado
-    </div>
-
-    <div class="options">
-
-      <button class="option selected"
-              onclick="changeColor('#f7eee0', this)">
-        <div class="color-dot cream"></div>
-      </button>
-
-      <button class="option"
-              onclick="changeColor('#f4d47d', this)">
-        <div class="color-dot yellow"></div>
-      </button>
-
-      <button class="option"
-              onclick="changeColor('#df9ba9', this)">
-        <div class="color-dot pink"></div>
-      </button>
-
-      <button class="option"
-              onclick="changeColor('#8bb7c8', this)">
-        <div class="color-dot blue"></div>
-      </button>
-
-      <button class="option"
-              onclick="changeColor('#9eba94', this)">
-        <div class="color-dot green"></div>
-      </button>
-
-      <button class="option"
-              onclick="changeColor('#ad7958', this)">
-        <div class="color-dot brown"></div>
-      </button>
-
-    </div>
-
-
-    <!-- CABEZA -->
-
-    <div class="section-title">
-      Cabeza
-    </div>
-
-    <div class="options">
-
-      <button class="option selected"
-              onclick="setHat(false, this)">
-        ✕
-      </button>
-
-      <button class="option"
-              onclick="setHat(true, this)">
-        🧢
-      </button>
-
-      <button class="option">
-        🔒
-      </button>
-
-    </div>
-
-
-    <!-- CARA -->
-
-    <div class="section-title">
-      Accesorios
-    </div>
-
-    <div class="options">
-
-      <button class="option selected"
-              onclick="setGlasses(false, this)">
-        ✕
-      </button>
-
-      <button class="option"
-              onclick="setGlasses(true, this)">
-        👓
-      </button>
-
-      <button class="option">
-        🔒
-      </button>
-
-    </div>
-
-  </aside>
 
 </div>
 
 
 <script>
 
-  /* ================================
-     ABRIR / CERRAR PANEL
-  ================================= */
+/* ================================
+   CAMBIO DE PESTAÑA
+================================ */
 
-  function togglePanel() {
+function showScreen(screen){
 
-    const panel =
-      document.getElementById("customPanel");
+    const map =
+        document.getElementById("mapScreen");
 
-    panel.classList.toggle("open");
+    const character =
+        document.getElementById("characterScreen");
 
-  }
+    const mapTab =
+        document.getElementById("mapTab");
 
+    const characterTab =
+        document.getElementById("characterTab");
 
-  /* ================================
-     CAMBIAR COLOR
-  ================================= */
+    if(screen === "map"){
 
-  function changeColor(color, button) {
+        map.classList.add("active");
+        character.classList.remove("active");
 
-    const main =
-      document.getElementById("mainCharacter");
+        mapTab.classList.add("active");
+        characterTab.classList.remove("active");
 
-    const preview =
-      document.getElementById("previewCharacter");
+    }else{
 
-    main.style.background = color;
-    preview.style.background = color;
+        character.classList.add("active");
+        map.classList.remove("active");
 
+        characterTab.classList.add("active");
+        mapTab.classList.remove("active");
 
-    const siblings =
-      button.parentElement.querySelectorAll(".option");
+    }
 
-    siblings.forEach(el =>
-      el.classList.remove("selected")
-    );
-
-    button.classList.add("selected");
-
-  }
+}
 
 
-  /* ================================
-     GORRA
-  ================================= */
+/* ================================
+   PERSONALIZADOR
+================================ */
 
-  function setHat(show, button) {
+function openCustomizer(){
 
-    const mainHat =
-      document.getElementById("mainHat");
+    document
+    .getElementById("customizer")
+    .classList.add("open");
 
-    const previewHat =
-      document.getElementById("previewHat");
-
-
-    mainHat.style.display =
-      show ? "block" : "none";
-
-    previewHat.style.display =
-      show ? "block" : "none";
+}
 
 
-    const siblings =
-      button.parentElement.querySelectorAll(".option");
+function closeCustomizer(){
 
-    siblings.forEach(el =>
-      el.classList.remove("selected")
-    );
+    document
+    .getElementById("customizer")
+    .classList.remove("open");
 
-    button.classList.add("selected");
-
-  }
+}
 
 
-  /* ================================
-     LENTES
-  ================================= */
+/* ================================
+   COLOR PERSONAJE
+================================ */
 
-  function setGlasses(show, button) {
+function changeColor(color,button){
 
-    const main =
-      document.getElementById("mainGlasses");
+    document
+    .querySelectorAll(".dice")
+    .forEach(dice => {
 
-    const preview =
-      document.getElementById("previewGlasses");
+        dice.style.background = color;
 
-
-    main.style.display =
-      show ? "block" : "none";
-
-    preview.style.display =
-      show ? "block" : "none";
+    });
 
 
-    const siblings =
-      button.parentElement.querySelectorAll(".option");
+    button
+    .parentElement
+    .querySelectorAll(".option")
+    .forEach(option => {
 
-    siblings.forEach(el =>
-      el.classList.remove("selected")
-    );
+        option.classList.remove("selected");
+
+    });
 
     button.classList.add("selected");
 
-  }
+}
 
 
-  /* ================================
-     ABRIR MAPA EN LA PARTE INFERIOR
-  ================================= */
+/* ================================
+   INICIAR MAPA ABAJO
+================================ */
 
-  window.addEventListener("load", () => {
+window.addEventListener("load", function(){
 
-    const container =
-      document.getElementById("mapContainer");
+    const map =
+        document.getElementById("mapScreen");
 
-    container.scrollTop =
-      container.scrollHeight;
+    map.scrollTop = map.scrollHeight;
 
-  });
+});
 
 </script>
 
