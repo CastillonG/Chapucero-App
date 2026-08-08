@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Chapucero</title>
 
 <style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -15,50 +20,85 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background:#d8d4c9;
+
     min-height:100vh;
+
     display:flex;
+
     justify-content:center;
+
     overflow:hidden;
 }
 
+
 /* =====================================================
-   FORMATO CELULAR
+   SIMULADOR CELULAR
 ===================================================== */
 
 .phone{
+
     width:100%;
+
     max-width:430px;
+
     height:100vh;
+
     position:relative;
+
     overflow:hidden;
+
     background:#658c4c;
+
 }
+
+
+/* computadora */
 
 @media(min-width:600px){
 
     body{
+
         align-items:center;
+
         padding:20px;
+
     }
 
+
     .phone{
+
         height:900px;
+
         border:8px solid #24251f;
+
         border-radius:35px;
-        box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+        box-shadow:
+            0 20px 60px
+            rgba(0,0,0,.25);
+
     }
+
 }
+
 
 /* =====================================================
    HEADER
 ===================================================== */
 
 .header{
+
     height:88px;
 
     position:absolute;
+
     top:0;
     left:0;
     right:0;
@@ -66,59 +106,84 @@ body{
     z-index:100;
 
     display:flex;
+
     align-items:flex-end;
 
     background:#efe3bd;
 
-    padding:0 12px 10px;
+    padding:
+        0 12px 10px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.18);
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.18);
+
 }
 
+
 .tab{
+
     flex:1;
 
     height:50px;
 
     border:none;
 
-    border-radius:15px 15px 10px 10px;
+    border-radius:
+        15px 15px
+        10px 10px;
 
     background:transparent;
 
     color:#604c2c;
 
     font-weight:900;
+
     font-size:14px;
 
     cursor:pointer;
 
     transition:.2s;
+
 }
 
+
 .tab.active{
+
     background:#426d31;
+
     color:#fff7dc;
+
 }
+
 
 /* =====================================================
    PANTALLAS
 ===================================================== */
 
 .screen{
+
     position:absolute;
 
     top:88px;
+
     bottom:0;
+
     left:0;
+
     right:0;
 
     display:none;
+
 }
 
+
 .screen.active{
+
     display:block;
+
 }
+
 
 /* =====================================================
    MAPA
@@ -127,12 +192,15 @@ body{
 .map-screen{
 
     overflow-y:auto;
+
     overflow-x:hidden;
 
     scroll-behavior:smooth;
 
     background:#6f984f;
+
 }
+
 
 .map{
 
@@ -146,25 +214,29 @@ body{
 
     radial-gradient(
         circle at 10% 12%,
-        rgba(46,76,34,.35) 0 55px,
+        rgba(46,76,34,.35)
+        0 55px,
         transparent 56px
     ),
 
     radial-gradient(
         circle at 90% 16%,
-        rgba(47,78,33,.35) 0 75px,
+        rgba(47,78,33,.35)
+        0 75px,
         transparent 76px
     ),
 
     radial-gradient(
         circle at 4% 42%,
-        rgba(52,85,37,.3) 0 90px,
+        rgba(52,85,37,.3)
+        0 90px,
         transparent 91px
     ),
 
     radial-gradient(
         circle at 100% 61%,
-        rgba(46,78,34,.28) 0 105px,
+        rgba(46,78,34,.28)
+        0 105px,
         transparent 106px
     ),
 
@@ -173,10 +245,12 @@ body{
         #799e55,
         #638b47
     );
+
 }
 
+
 /* =====================================================
-   CAMINO CENTRAL
+   CAMINO DE TIERRA
 ===================================================== */
 
 .dirtPath{
@@ -184,53 +258,86 @@ body{
     position:absolute;
 
     left:50%;
+
     bottom:-50px;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width:190px;
+
     height:2350px;
 
     opacity:.72;
 
     background:
+
     repeating-radial-gradient(
+
         ellipse at center,
+
         #9a7748 0 22px,
+
         #a98554 23px 45px,
+
         #977246 46px 67px
+
     );
 
-    filter:blur(.2px);
-
     clip-path:polygon(
+
         35% 100%,
+
         67% 100%,
+
         73% 92%,
+
         44% 85%,
+
         30% 76%,
+
         67% 68%,
+
         75% 59%,
+
         35% 52%,
+
         23% 42%,
+
         67% 35%,
+
         77% 26%,
+
         42% 18%,
+
         28% 8%,
+
         57% 0,
+
         75% 0,
+
         47% 10%,
+
         67% 18%,
+
         88% 26%,
+
         53% 43%,
+
         78% 52%,
+
         93% 59%,
+
         47% 76%,
+
         77% 85%
+
     );
 
     z-index:1;
+
 }
+
 
 /* =====================================================
    DECORACIONES
@@ -241,79 +348,214 @@ body{
 .rock,
 .flower,
 .coffeeDecoration{
+
     position:absolute;
+
     z-index:2;
+
     user-select:none;
+
     pointer-events:none;
+
 }
+
 
 .tree{
+
     font-size:75px;
+
     filter:saturate(.8);
+
 }
+
 
 .bush{
+
     font-size:48px;
+
 }
+
 
 .rock{
+
     font-size:23px;
+
     opacity:.65;
+
 }
+
 
 .flower{
+
     font-size:18px;
+
 }
 
+
 .coffeeDecoration{
+
     font-size:40px;
+
 }
+
 
 /* árboles */
 
-.t1{bottom:120px;left:-25px;}
-.t2{bottom:400px;right:-30px;}
-.t3{bottom:720px;left:-30px;}
-.t4{bottom:1070px;right:-25px;}
-.t5{bottom:1370px;left:-28px;}
-.t6{bottom:1710px;right:-28px;}
-.t7{bottom:2020px;left:-20px;}
+.t1{
+    bottom:120px;
+    left:-25px;
+}
+
+.t2{
+    bottom:400px;
+    right:-30px;
+}
+
+.t3{
+    bottom:720px;
+    left:-30px;
+}
+
+.t4{
+    bottom:1070px;
+    right:-25px;
+}
+
+.t5{
+    bottom:1370px;
+    left:-28px;
+}
+
+.t6{
+    bottom:1710px;
+    right:-28px;
+}
+
+.t7{
+    bottom:2020px;
+    left:-20px;
+}
+
 
 /* arbustos */
 
-.b1{bottom:240px;right:25px;}
-.b2{bottom:570px;left:12px;}
-.b3{bottom:880px;right:5px;}
-.b4{bottom:1220px;left:12px;}
-.b5{bottom:1510px;right:15px;}
-.b6{bottom:1900px;left:5px;}
+.b1{
+    bottom:240px;
+    right:25px;
+}
+
+.b2{
+    bottom:570px;
+    left:12px;
+}
+
+.b3{
+    bottom:880px;
+    right:5px;
+}
+
+.b4{
+    bottom:1220px;
+    left:12px;
+}
+
+.b5{
+    bottom:1510px;
+    right:15px;
+}
+
+.b6{
+    bottom:1900px;
+    left:5px;
+}
+
 
 /* piedras */
 
-.r1{bottom:320px;left:55px;}
-.r2{bottom:515px;right:45px;}
-.r3{bottom:830px;left:35px;}
-.r4{bottom:1130px;right:40px;}
-.r5{bottom:1450px;left:45px;}
-.r6{bottom:1800px;right:50px;}
+.r1{
+    bottom:320px;
+    left:55px;
+}
+
+.r2{
+    bottom:515px;
+    right:45px;
+}
+
+.r3{
+    bottom:830px;
+    left:35px;
+}
+
+.r4{
+    bottom:1130px;
+    right:40px;
+}
+
+.r5{
+    bottom:1450px;
+    left:45px;
+}
+
+.r6{
+    bottom:1800px;
+    right:50px;
+}
+
 
 /* flores */
 
-.f1{bottom:270px;right:80px;}
-.f2{bottom:660px;left:55px;}
-.f3{bottom:970px;right:70px;}
-.f4{bottom:1310px;left:60px;}
-.f5{bottom:1670px;right:65px;}
-.f6{bottom:2000px;left:80px;}
+.f1{
+    bottom:270px;
+    right:80px;
+}
+
+.f2{
+    bottom:660px;
+    left:55px;
+}
+
+.f3{
+    bottom:970px;
+    right:70px;
+}
+
+.f4{
+    bottom:1310px;
+    left:60px;
+}
+
+.f5{
+    bottom:1670px;
+    right:65px;
+}
+
+.f6{
+    bottom:2000px;
+    left:80px;
+}
+
 
 /* café */
 
-.cd1{bottom:480px;left:30px;}
-.cd2{bottom:990px;right:25px;}
-.cd3{bottom:1580px;left:20px;}
+.cd1{
+    bottom:480px;
+    left:30px;
+}
+
+.cd2{
+    bottom:990px;
+    right:25px;
+}
+
+.cd3{
+    bottom:1580px;
+    left:20px;
+}
+
 
 /* =====================================================
-   CAFETERÍA DECORATIVA
+   CAFETERÍA
 ===================================================== */
 
 .cafeBuilding{
@@ -321,23 +563,32 @@ body{
     position:absolute;
 
     bottom:690px;
+
     left:-20px;
 
     width:110px;
+
     height:105px;
 
     background:#805736;
 
-    border:5px solid #513d29;
+    border:
+        5px solid
+        #513d29;
 
     border-radius:10px;
 
     z-index:3;
 
-    transform:rotate(-2deg);
+    transform:
+        rotate(-2deg);
 
-    box-shadow:0 7px 12px rgba(0,0,0,.2);
+    box-shadow:
+        0 7px 12px
+        rgba(0,0,0,.2);
+
 }
+
 
 .cafeBuilding::before{
 
@@ -346,6 +597,7 @@ body{
     position:absolute;
 
     top:-30px;
+
     left:17px;
 
     width:75px;
@@ -356,47 +608,68 @@ body{
 
     color:#f7e2b3;
 
-    border:4px solid #49331f;
+    border:
+        4px solid
+        #49331f;
 
     text-align:center;
 
     font-weight:900;
 
     border-radius:10px;
+
 }
+
 
 .awning{
 
     position:absolute;
 
     top:10px;
+
     left:0;
 
     width:100%;
+
     height:25px;
 
     background:
+
         repeating-linear-gradient(
+
             90deg,
-            #f5e1b5 0 15px,
-            #a9533e 15px 30px
+
+            #f5e1b5
+            0 15px,
+
+            #a9533e
+            15px 30px
+
         );
+
 }
+
 
 .door{
 
     position:absolute;
 
     width:28px;
+
     height:52px;
 
     left:42px;
+
     bottom:0;
 
     background:#4d6c5a;
 
-    border:4px solid #453524;
+    border:
+        4px solid
+        #453524;
+
 }
+
 
 /* =====================================================
    LETREROS
@@ -412,7 +685,9 @@ body{
 
     color:#f6e4b7;
 
-    border:5px solid #4c351f;
+    border:
+        5px solid
+        #4c351f;
 
     border-radius:8px;
 
@@ -422,31 +697,54 @@ body{
 
     font-weight:900;
 
-    box-shadow:0 5px 8px rgba(0,0,0,.2);
+    box-shadow:
+        0 5px 8px
+        rgba(0,0,0,.2);
 
-    transform:rotate(-3deg);
+    transform:
+        rotate(-3deg);
+
 }
+
 
 .sign1{
+
     bottom:250px;
+
     right:18px;
+
     width:90px;
+
     font-size:12px;
+
 }
+
 
 .sign2{
+
     bottom:1140px;
+
     right:20px;
+
     width:95px;
+
     font-size:12px;
+
 }
 
+
 .sign3{
+
     bottom:1980px;
+
     left:18px;
+
     width:120px;
+
     font-size:13px;
+
 }
+
 
 /* =====================================================
    CASILLAS
@@ -457,10 +755,13 @@ body{
     position:absolute;
 
     width:58px;
+
     height:58px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     border-radius:12px;
@@ -470,16 +771,25 @@ body{
     color:#59482e;
 
     font-size:15px;
+
     font-weight:900;
 
-    border:4px solid #fff3d8;
+    border:
+        4px solid
+        #fff3d8;
 
     box-shadow:
-        0 5px 0 #94784e,
-        0 9px 12px rgba(0,0,0,.18);
+
+        0 5px 0
+        #94784e,
+
+        0 9px 12px
+        rgba(0,0,0,.18);
 
     z-index:15;
+
 }
+
 
 .tile.current{
 
@@ -490,28 +800,40 @@ body{
     color:#fff;
 
     box-shadow:
-        0 5px 0 #406d29,
-        0 0 0 6px rgba(205,239,124,.2);
+
+        0 5px 0
+        #406d29,
+
+        0 0 0 6px
+        rgba(205,239,124,.2);
+
 }
+
 
 .tile.unlocked{
 
     background:#9ac84f;
+
     border-color:#dcf48c;
 
     color:#fff;
+
 }
+
 
 .tile.locked{
 
     background:#e7dcc0;
+
     color:#735d3d;
 
     opacity:.96;
+
 }
 
+
 /* =====================================================
-   PERSONAJE DEL MAPA
+   PERSONAJE EN MAPA
 ===================================================== */
 
 .mapCharacterHolder{
@@ -522,34 +844,52 @@ body{
 
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width:150px;
+
     height:150px;
 
     z-index:40;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     pointer-events:none;
+
+    transition:
+        bottom .6s ease,
+        left .6s ease;
+
 }
+
 
 .characterImage{
 
     width:130px;
+
     max-height:145px;
 
     object-fit:contain;
 
     display:block;
 
-    filter:drop-shadow(0 8px 5px rgba(0,0,0,.25));
+    filter:
+
+        drop-shadow(
+            0 8px 5px
+            rgba(0,0,0,.25)
+        );
+
 }
 
+
 /* =====================================================
-   PERSONAJE / PERFIL
+   PANTALLA PERSONAJE
 ===================================================== */
 
 .character-screen{
@@ -557,7 +897,9 @@ body{
     background:#f5ead0;
 
     overflow-y:auto;
+
 }
+
 
 .characterHero{
 
@@ -566,26 +908,38 @@ body{
     position:relative;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
 
     background:
+
         radial-gradient(
+
             circle at 50% 45%,
+
             #a5ca73,
+
             #709e4d 70%
+
         );
 
     padding-top:25px;
+
 }
+
 
 .characterHero h1{
 
     color:#fff4da;
 
     font-size:27px;
+
     font-weight:900;
+
 }
+
 
 .characterHero p{
 
@@ -594,9 +948,13 @@ body{
     margin-top:5px;
 
     font-size:12px;
+
 }
 
-/* personaje mucho más centrado */
+
+/* =====================================================
+   PERSONAJE GRANDE
+===================================================== */
 
 .profileCharacter{
 
@@ -607,20 +965,35 @@ body{
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     position:relative;
 
     padding-top:15px;
+
 }
+
 
 .profileCharacter .characterImage{
 
     width:210px;
+
     max-height:235px;
+
 }
 
-/* casco sobre personaje */
+
+/* =====================================================
+   CASCO
+
+   ANTES:
+   top:37px
+
+   AHORA:
+   top:58px
+
+===================================================== */
 
 .helmetOverlay{
 
@@ -632,21 +1005,37 @@ body{
 
     object-fit:contain;
 
-    top:37px;
+    top:58px;
+
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index:10;
 
     pointer-events:none;
 
-    filter:drop-shadow(0 4px 3px rgba(0,0,0,.15));
+    filter:
+
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.15)
+        );
+
 }
 
+
 .helmetOverlay.active{
+
     display:block;
+
 }
+
+
+/* =====================================================
+   BOTÓN PERSONALIZAR
+===================================================== */
 
 .customButton{
 
@@ -658,7 +1047,8 @@ body{
 
     color:#654a1c;
 
-    padding:13px 30px;
+    padding:
+        13px 30px;
 
     border-radius:16px;
 
@@ -668,8 +1058,12 @@ body{
 
     cursor:pointer;
 
-    box-shadow:0 5px 0 #b98a29;
+    box-shadow:
+        0 5px 0
+        #b98a29;
+
 }
+
 
 /* =====================================================
    MEDALLAS
@@ -685,8 +1079,12 @@ body{
 
     padding:20px;
 
-    box-shadow:0 8px 18px rgba(0,0,0,.15);
+    box-shadow:
+        0 8px 18px
+        rgba(0,0,0,.15);
+
 }
+
 
 .medalsHeader{
 
@@ -697,14 +1095,18 @@ body{
     justify-content:space-between;
 
     margin-bottom:20px;
+
 }
+
 
 .medalsHeader h2{
 
     color:#f8e6b5;
 
     font-size:21px;
+
 }
+
 
 .medalCount{
 
@@ -714,19 +1116,26 @@ body{
 
     border-radius:30px;
 
-    padding:7px 13px;
+    padding:
+        7px 13px;
 
     font-weight:900;
+
 }
+
 
 .medalGrid{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
-    gap:17px 10px;
+    gap:
+        17px 10px;
+
 }
+
 
 .medalSlot{
 
@@ -737,28 +1146,38 @@ body{
     align-items:center;
 
     gap:5px;
+
 }
+
 
 .medalCircle{
 
     width:62px;
+
     height:62px;
 
     border-radius:50%;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    border:3px solid #547846;
+    border:
+        3px solid
+        #547846;
 
     background:#244b23;
 
     color:#879a70;
 
     font-size:29px;
+
     font-weight:900;
+
 }
+
 
 .medalCircle.earned{
 
@@ -769,9 +1188,15 @@ body{
     color:#fff3c7;
 
     box-shadow:
-        inset 0 0 0 4px #f6cb53,
-        0 4px 0 #8b631d;
+
+        inset 0 0 0 4px
+        #f6cb53,
+
+        0 4px 0
+        #8b631d;
+
 }
+
 
 .medalName{
 
@@ -784,10 +1209,12 @@ body{
     font-size:9px;
 
     line-height:1.1;
+
 }
 
+
 /* =====================================================
-   PERSONALIZADOR COMPLETO
+   PERSONALIZADOR
 ===================================================== */
 
 .customizer{
@@ -803,11 +1230,16 @@ body{
     z-index:300;
 
     overflow-y:auto;
+
 }
 
+
 .customizer.open{
+
     display:block;
+
 }
+
 
 .customHeader{
 
@@ -821,7 +1253,8 @@ body{
 
     gap:15px;
 
-    padding:0 18px;
+    padding:
+        0 18px;
 
     position:sticky;
 
@@ -829,12 +1262,17 @@ body{
 
     z-index:20;
 
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,.08);
+
 }
+
 
 .back{
 
     width:38px;
+
     height:38px;
 
     border:0;
@@ -846,37 +1284,60 @@ body{
     cursor:pointer;
 
     font-size:20px;
+
 }
+
 
 .customHeader strong{
 
     color:#3c6334;
+
     font-size:18px;
+
 }
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
 
 .customPreview{
 
     height:310px;
 
     background:
+
         radial-gradient(
+
             circle,
+
             #a9c981,
+
             #739a58
+
         );
 
     position:relative;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
 }
+
 
 .customPreview .characterImage{
 
     width:200px;
+
     max-height:230px;
+
 }
+
+
+/* casco preview también más abajo */
 
 .previewHelmet{
 
@@ -886,53 +1347,76 @@ body{
 
     width:145px;
 
-    top:37px;
+    top:58px;
+
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index:10;
 
-    filter:drop-shadow(0 4px 3px rgba(0,0,0,.15));
+    filter:
+
+        drop-shadow(
+            0 4px 3px
+            rgba(0,0,0,.15)
+        );
+
 }
 
+
 .previewHelmet.active{
+
     display:block;
+
 }
+
 
 /* =====================================================
    OPCIONES
 ===================================================== */
 
 .customContent{
+
     padding:20px;
+
 }
+
 
 .sectionTitle{
 
-    margin:20px 0 12px;
+    margin:
+        20px 0 12px;
 
     color:#49623d;
 
     font-size:13px;
 
     font-weight:900;
+
 }
+
 
 .options{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap:10px;
+
 }
+
 
 .option{
 
     min-height:72px;
 
-    border:3px solid transparent;
+    border:
+        3px solid
+        transparent;
 
     border-radius:16px;
 
@@ -943,41 +1427,53 @@ body{
     font-size:27px;
 
     position:relative;
+
 }
+
 
 .option.selected{
 
     border-color:#4e853f;
 
     background:#eef3dd;
+
 }
+
 
 .colorBall{
 
     width:37px;
+
     height:37px;
 
     border-radius:10px;
 
     margin:auto;
 
-    border:3px solid rgba(255,255,255,.7);
+    border:
+        3px solid
+        rgba(255,255,255,.7);
+
 }
 
-/* casco miniatura */
 
 .helmetMini{
 
     width:62px;
+
     height:55px;
 
     object-fit:contain;
+
 }
+
 
 .lockedOption{
 
     opacity:.45;
+
 }
+
 
 /* =====================================================
    GUARDAR
@@ -1005,15 +1501,939 @@ body{
 
     cursor:pointer;
 
-    box-shadow:0 5px 0 #335d2c;
+    box-shadow:
+        0 5px 0
+        #335d2c;
+
+}
+
+
+/* =====================================================
+   BOTÓN EVENTO EXTERNO
+===================================================== */
+
+.eventDevButton{
+
+    position:fixed;
+
+    right:40px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    padding:
+        18px 25px;
+
+    border:0;
+
+    border-radius:16px;
+
+    background:#6c3c27;
+
+    color:#fff4d5;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 6px 0
+        #3e251a,
+
+        0 12px 25px
+        rgba(0,0,0,.25);
+
+    z-index:999;
+
+}
+
+
+.eventDevButton:hover{
+
+    transform:
+        translateY(-50%)
+        scale(1.04);
+
+}
+
+
+@media(max-width:599px){
+
+    .eventDevButton{
+
+        display:none;
+
+    }
+
+}
+
+
+/* =====================================================
+   EVENTO
+===================================================== */
+
+.eventScreen{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1000;
+
+    display:none;
+
+    background:#507640;
+
+}
+
+
+.eventScreen.open{
+
+    display:block;
+
+}
+
+
+.eventBackground{
+
+    width:100%;
+
+    height:100%;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+
+            circle at 20% 30%,
+
+            rgba(255,225,130,.13),
+
+            transparent 25%
+
+        ),
+
+        radial-gradient(
+
+            circle at 80% 65%,
+
+            rgba(255,255,255,.09),
+
+            transparent 25%
+
+        ),
+
+        linear-gradient(
+
+            180deg,
+
+            #33582e 0%,
+
+            #557e3c 48%,
+
+            #87603d 100%
+
+        );
+
+}
+
+
+/* =====================================================
+   HEADER EVENTO
+===================================================== */
+
+.eventTop{
+
+    height:110px;
+
+    padding:
+        18px 16px;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    position:relative;
+
+    z-index:20;
+
+}
+
+
+.eventClose{
+
+    width:38px;
+
+    height:38px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.17);
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+}
+
+
+.eventTitle{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    text-align:center;
+
+    color:white;
+
+}
+
+
+.eventTitle small{
+
+    display:block;
+
+    font-size:9px;
+
+    letter-spacing:1.8px;
+
+    opacity:.7;
+
+    margin-bottom:4px;
+
+}
+
+
+.eventTitle strong{
+
+    white-space:nowrap;
+
+    font-size:16px;
+
+}
+
+
+.eventTimer{
+
+    width:54px;
+
+    height:38px;
+
+    background:#f3d378;
+
+    color:#533b25;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 4px 0
+        #99742f;
+
+}
+
+
+/* =====================================================
+   BATALLA
+===================================================== */
+
+.battleArea{
+
+    height:390px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-around;
+
+    padding:
+        20px 10px;
+
+}
+
+
+.fighter{
+
+    width:47%;
+
+    height:330px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+
+.fighterName{
+
+    color:#fff5d8;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    margin-bottom:8px;
+
+    letter-spacing:.7px;
+
+}
+
+
+/* vida */
+
+.healthBar{
+
+    width:125px;
+
+    height:14px;
+
+    padding:2px;
+
+    border-radius:20px;
+
+    background:#302c25;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 3px 5px
+        rgba(0,0,0,.25);
+
+}
+
+
+.healthFill{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:20px;
+
+    transition:
+        width .1s;
+
+}
+
+
+.enemyHealth{
+
+    background:#dc6852;
+
+}
+
+
+.playerHealth{
+
+    background:#88ce56;
+
+}
+
+
+/* =====================================================
+   PERSONAJES BATALLA
+===================================================== */
+
+.fighterStage{
+
+    flex:1;
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+}
+
+
+.enemyImage{
+
+    max-width:150px;
+
+    max-height:205px;
+
+    object-fit:contain;
+
+    filter:
+
+        drop-shadow(
+            0 12px 8px
+            rgba(0,0,0,.32)
+        );
+
+}
+
+
+.eventPlayerImage{
+
+    max-width:150px;
+
+    max-height:205px;
+
+    object-fit:contain;
+
+    filter:
+
+        drop-shadow(
+            0 12px 8px
+            rgba(0,0,0,.32)
+        );
+
+}
+
+
+/* =====================================================
+   VS
+===================================================== */
+
+.versus{
+
+    position:absolute;
+
+    left:50%;
+
+    top:175px;
+
+    transform:
+        translateX(-50%)
+        rotate(-7deg);
+
+    width:56px;
+
+    height:56px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f1c647;
+
+    border:
+        4px solid
+        #ffe798;
+
+    color:#57381f;
+
+    font-size:18px;
+
+    font-weight:1000;
+
+    z-index:20;
+
+    box-shadow:
+
+        0 5px 0
+        #966729,
+
+        0 10px 18px
+        rgba(0,0,0,.2);
+
+}
+
+
+/* =====================================================
+   BOTÓN DE GOLPE
+===================================================== */
+
+.tapZone{
+
+    width:
+        calc(100% - 40px);
+
+    height:145px;
+
+    margin:
+        0 20px;
+
+    border:
+        4px solid
+        #ebdb9b;
+
+    border-radius:25px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #e4bc54,
+
+            #bc852f
+
+        );
+
+    color:#4a321e;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    user-select:none;
+
+    touch-action:manipulation;
+
+    box-shadow:
+
+        0 8px 0
+        #6c4b27,
+
+        0 15px 25px
+        rgba(0,0,0,.2);
+
+}
+
+
+.tapZone:active{
+
+    transform:
+        translateY(4px);
+
+    box-shadow:
+
+        0 4px 0
+        #6c4b27;
+
+}
+
+
+.tapIcon{
+
+    font-size:35px;
+
+    margin-bottom:5px;
+
+}
+
+
+.tapZone strong{
+
+    font-size:20px;
+
+    font-weight:1000;
+
+}
+
+
+.tapZone span{
+
+    font-size:11px;
+
+    margin-top:4px;
+
+    opacity:.7;
+
+}
+
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+
+.hitCounter{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:
+        rgba(255,255,255,.7);
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+
+}
+
+
+.hitCounter strong{
+
+    display:block;
+
+    color:white;
+
+    font-size:26px;
+
+    margin-top:3px;
+
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+.enemyHit{
+
+    animation:
+        enemyHit .12s linear;
+
+}
+
+
+@keyframes enemyHit{
+
+    0%{
+
+        transform:
+            translateX(0);
+
+    }
+
+    33%{
+
+        transform:
+            translateX(-8px)
+            rotate(-3deg);
+
+    }
+
+    66%{
+
+        transform:
+            translateX(8px)
+            rotate(3deg);
+
+    }
+
+    100%{
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+.playerAttack{
+
+    animation:
+        playerAttack .15s ease;
+
+}
+
+
+@keyframes playerAttack{
+
+    0%{
+
+        transform:
+            translateX(0);
+
+    }
+
+    50%{
+
+        transform:
+            translateX(-12px)
+            scale(1.07);
+
+    }
+
+    100%{
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   RESULTADO EVENTO
+===================================================== */
+
+.eventResult{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    background:
+        rgba(24,35,22,.75);
+
+    backdrop-filter:
+        blur(7px);
+
+}
+
+
+.eventResult.show{
+
+    display:flex;
+
+}
+
+
+.resultCard{
+
+    width:100%;
+
+    padding:
+        28px 22px;
+
+    border-radius:27px;
+
+    background:#f6ebcd;
+
+    text-align:center;
+
+    color:#4d452f;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,.35);
+
+}
+
+
+.resultEmoji{
+
+    font-size:55px;
+
+    margin-bottom:7px;
+
+}
+
+
+.resultCard h2{
+
+    color:#3f6b31;
+
+    font-size:26px;
+
+    margin-bottom:8px;
+
+}
+
+
+.resultCard p{
+
+    font-size:13px;
+
+    color:#756b57;
+
+    line-height:1.4;
+
+}
+
+
+/* =====================================================
+   EXP
+===================================================== */
+
+.xpReward{
+
+    margin:
+        22px 0;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    background:#e2d39c;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+.xpReward span{
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+.xpReward strong{
+
+    color:#54813c;
+
+    font-size:24px;
+
+}
+
+
+/* =====================================================
+   BOTONES RESULTADO
+===================================================== */
+
+.claimButton,
+.retryButton{
+
+    width:100%;
+
+    border:0;
+
+    border-radius:15px;
+
+    padding:14px;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+}
+
+
+.claimButton{
+
+    background:#548640;
+
+    color:white;
+
+    box-shadow:
+        0 5px 0
+        #365e2e;
+
+}
+
+
+.retryButton{
+
+    display:none;
+
+    background:#cc9a48;
+
+    color:white;
+
+    box-shadow:
+        0 5px 0
+        #8e662d;
+
+}
+
+
+/* =====================================================
+   LEVEL UP
+===================================================== */
+
+.levelUpFlash{
+
+    animation:
+        levelUpFlash .7s ease;
+
+}
+
+
+@keyframes levelUpFlash{
+
+    0%{
+
+        transform:
+            scale(1);
+
+    }
+
+    50%{
+
+        transform:
+            scale(1.35);
+
+        box-shadow:
+            0 0 30px
+            #e7ef83;
+
+    }
+
+    100%{
+
+        transform:
+            scale(1);
+
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =====================================================
+     CELULAR
+===================================================== -->
+
 <div class="phone">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
@@ -1025,6 +2445,7 @@ body{
         🗺️ CAMINO
 
     </button>
+
 
     <button
         class="tab"
@@ -1038,6 +2459,7 @@ body{
 </header>
 
 
+
 <!-- =====================================================
      MAPA
 ===================================================== -->
@@ -1046,7 +2468,9 @@ body{
     class="screen map-screen active"
     id="mapScreen">
 
+
 <div class="map">
+
 
     <div class="dirtPath"></div>
 
@@ -1094,9 +2518,17 @@ body{
 
     <!-- café -->
 
-    <div class="coffeeDecoration cd1">☕</div>
-    <div class="coffeeDecoration cd2">🫘</div>
-    <div class="coffeeDecoration cd3">☕</div>
+    <div class="coffeeDecoration cd1">
+        ☕
+    </div>
+
+    <div class="coffeeDecoration cd2">
+        🫘
+    </div>
+
+    <div class="coffeeDecoration cd3">
+        ☕
+    </div>
 
 
     <!-- cafetería -->
@@ -1113,186 +2545,419 @@ body{
     <!-- letreros -->
 
     <div class="sign sign1">
-        TÚ PUEDES<br>
+
+        TÚ PUEDES
+
+        <br>
+
         ¡SÍ!
+
     </div>
+
 
     <div class="sign sign2">
-        SIGUE<br>
+
+        SIGUE
+
+        <br>
+
         ADELANTE
+
     </div>
 
+
     <div class="sign sign3">
-        AVENTURA<br>
+
+        AVENTURA
+
+        <br>
+
         CHAPUCERO
+
     </div>
+
 
 
     <!-- =================================================
          CASILLAS
     ================================================== -->
 
-    <div class="tile current"
-        style="bottom:145px; left:186px;">
+
+    <div
+        id="level0"
+        class="tile current"
+        style="
+        bottom:145px;
+        left:186px;
+        ">
+
         0
+
     </div>
 
-    <div class="tile unlocked"
-        style="bottom:215px; left:205px;">
-        1
-    </div>
 
-    <div class="tile unlocked"
-        style="bottom:282px; left:235px;">
-        2
-    </div>
+    <div
+        id="level1"
+        class="tile locked"
+        style="
+        bottom:215px;
+        left:205px;
+        ">
 
-    <div class="tile locked"
-        style="bottom:349px; left:270px;">
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:416px; left:250px;">
+
+    <div
+        id="level2"
+        class="tile locked"
+        style="
+        bottom:282px;
+        left:235px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:483px; left:205px;">
+
+    <div
+        id="level3"
+        class="tile locked"
+        style="
+        bottom:349px;
+        left:270px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:550px; left:155px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:416px;
+        left:250px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:617px; left:115px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:483px;
+        left:205px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:684px; left:95px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:550px;
+        left:155px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:751px; left:120px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:617px;
+        left:115px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:818px; left:165px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:684px;
+        left:95px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:885px; left:215px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:751px;
+        left:120px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:952px; left:255px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:818px;
+        left:165px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1019px; left:270px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:885px;
+        left:215px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1086px; left:245px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:952px;
+        left:255px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1153px; left:195px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1019px;
+        left:270px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1220px; left:145px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1086px;
+        left:245px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1287px; left:105px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1153px;
+        left:195px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1354px; left:90px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1220px;
+        left:145px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1421px; left:115px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1287px;
+        left:105px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1488px; left:160px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1354px;
+        left:90px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1555px; left:210px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1421px;
+        left:115px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1622px; left:250px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1488px;
+        left:160px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1689px; left:270px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1555px;
+        left:210px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1756px; left:245px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1622px;
+        left:250px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1823px; left:195px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1689px;
+        left:270px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
-        style="bottom:1890px; left:145px;">
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1756px;
+        left:245px;
+        ">
+
         🔒
+
     </div>
 
-    <div class="tile locked"
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1823px;
+        left:195px;
+        ">
+
+        🔒
+
+    </div>
+
+
+    <div
+        class="tile locked"
+        style="
+        bottom:1890px;
+        left:145px;
+        ">
+
+        🔒
+
+    </div>
+
+
+    <div
+        class="tile locked"
         style="
         bottom:1965px;
         left:185px;
+
         background:#e5ad35;
+
         border-color:#ffe186;
         ">
+
         🏆
+
     </div>
 
 
-    <!-- PERSONAJE REAL -->
 
-    <div class="mapCharacterHolder">
+    <!-- =================================================
+         PERSONAJE
+    ================================================== -->
+
+    <div
+        class="mapCharacterHolder"
+        id="mapCharacterHolder">
+
 
         <img
+
             id="mapCharacter"
+
             class="characterImage"
+
             src="chapucero%20dado.png"
-            alt="Chapucero">
+
+            alt="Chapucero"
+
+        >
+
 
     </div>
+
 
 </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1306,31 +2971,53 @@ body{
 
 <div class="characterHero">
 
+
     <h1>
+
         CHAPUCERO
+
     </h1>
 
+
     <p>
+
         Nuestro dado aventurero
+
     </p>
+
 
 
     <div class="profileCharacter">
 
+
         <img
+
             id="profileCharacterImage"
+
             class="characterImage"
+
             src="chapucero%20dado.png"
-            alt="Chapucero">
+
+            alt="Chapucero"
+
+        >
 
 
         <img
+
             id="profileHelmet"
+
             class="helmetOverlay"
+
             src="Casco%20chapuceero.png"
-            alt="Casco Chapucero">
+
+            alt="Casco Chapucero"
+
+        >
+
 
     </div>
+
 
 
     <button
@@ -1341,36 +3028,58 @@ body{
 
     </button>
 
+
 </div>
 
 
-<!-- MEDALLAS -->
+
+<!-- =====================================================
+     MEDALLAS
+===================================================== -->
 
 <div class="medals">
 
+
     <div class="medalsHeader">
 
+
         <h2>
+
             MIS MEDALLAS
+
         </h2>
 
+
         <div class="medalCount">
+
             2 / 20
+
         </div>
 
+
     </div>
+
 
 
     <div class="medalGrid">
 
+
         <div class="medalSlot">
 
             <div class="medalCircle earned">
+
                 ☕
+
             </div>
 
             <div class="medalName">
-                PRIMER<br>PASO
+
+                PRIMER
+
+                <br>
+
+                PASO
+
             </div>
 
         </div>
@@ -1379,11 +3088,15 @@ body{
         <div class="medalSlot">
 
             <div class="medalCircle earned">
+
                 🎲
+
             </div>
 
             <div class="medalName">
+
                 CHAPUCERO
+
             </div>
 
         </div>
@@ -1478,12 +3191,16 @@ body{
             <div class="medalCircle">?</div>
             <div class="medalName">???</div>
         </div>
+
 
     </div>
 
+
 </div>
 
+
 </section>
+
 
 
 <!-- =====================================================
@@ -1497,6 +3214,7 @@ body{
 
 <div class="customHeader">
 
+
     <button
         class="back"
         onclick="closeCustomizer()">
@@ -1505,44 +3223,68 @@ body{
 
     </button>
 
+
     <strong>
+
         PERSONALIZAR
+
     </strong>
 
+
 </div>
+
 
 
 <div class="customPreview">
 
+
     <img
+
         id="previewCharacterImage"
+
         class="characterImage"
+
         src="chapucero%20dado.png"
-        alt="Chapucero">
+
+        alt="Chapucero"
+
+    >
 
 
     <img
+
         id="previewHelmet"
+
         class="previewHelmet"
+
         src="Casco%20chapuceero.png"
-        alt="Casco Chapucero">
+
+        alt="Casco Chapucero"
+
+    >
+
 
 </div>
+
 
 
 <div class="customContent">
 
 
-    <!-- COLOR -->
+
+    <!-- =================================================
+         COLOR
+    ================================================== -->
 
     <div class="sectionTitle">
+
         COLOR DEL DADO
+
     </div>
 
 
     <div class="options">
 
-        <!-- ORIGINAL -->
 
         <button
             class="option selected"
@@ -1550,13 +3292,14 @@ body{
 
             <div
                 class="colorBall"
-                style="background:#eee3ca">
+                style="
+                background:#eee3ca;
+                ">
             </div>
 
         </button>
 
 
-        <!-- AMARILLO -->
 
         <button
             class="option"
@@ -1564,13 +3307,14 @@ body{
 
             <div
                 class="colorBall"
-                style="background:#e6b83d">
+                style="
+                background:#e6b83d;
+                ">
             </div>
 
         </button>
 
 
-        <!-- VERDE -->
 
         <button
             class="option"
@@ -1578,13 +3322,14 @@ body{
 
             <div
                 class="colorBall"
-                style="background:#65924e">
+                style="
+                background:#65924e;
+                ">
             </div>
 
         </button>
 
 
-        <!-- AZUL -->
 
         <button
             class="option"
@@ -1592,22 +3337,31 @@ body{
 
             <div
                 class="colorBall"
-                style="background:#76a4c3">
+                style="
+                background:#76a4c3;
+                ">
             </div>
 
         </button>
 
+
     </div>
 
 
-    <!-- ACCESORIOS -->
+
+    <!-- =================================================
+         ACCESORIOS
+    ================================================== -->
 
     <div class="sectionTitle">
+
         ACCESORIOS
+
     </div>
 
 
     <div class="options">
+
 
         <button
             id="noHelmetButton"
@@ -1619,17 +3373,26 @@ body{
         </button>
 
 
+
         <button
             id="helmetButton"
             class="option"
             onclick="setHelmet(true,this)">
 
+
             <img
+
                 class="helmetMini"
+
                 src="Casco%20chapuceero.png"
-                alt="Casco">
+
+                alt="Casco"
+
+            >
+
 
         </button>
+
 
 
         <button
@@ -1646,36 +3409,56 @@ body{
             🔒
 
         </button>
+
 
     </div>
 
 
-    <!-- FUTUROS ARTÍCULOS -->
+
+    <!-- =================================================
+         CALCOMANÍAS
+    ================================================== -->
 
     <div class="sectionTitle">
+
         CALCOMANÍAS
+
     </div>
 
 
     <div class="options">
 
+
         <button class="option selected">
+
             🚫
+
         </button>
+
 
         <button class="option">
+
             ⭐
+
         </button>
 
+
         <button class="option lockedOption">
+
             🔥
+
         </button>
 
+
         <button class="option lockedOption">
+
             ⚡
+
         </button>
+
 
     </div>
+
 
 
     <button
@@ -1689,9 +3472,355 @@ body{
 
 </div>
 
-</div>
 
 </div>
+
+
+
+<!-- =====================================================
+     EVENTO
+===================================================== -->
+
+<div
+    class="eventScreen"
+    id="eventScreen">
+
+
+<div class="eventBackground">
+
+
+
+    <!-- =================================================
+         HEADER EVENTO
+    ================================================== -->
+
+    <div class="eventTop">
+
+
+        <button
+            class="eventClose"
+            onclick="closeEvent()">
+
+            ✕
+
+        </button>
+
+
+
+        <div class="eventTitle">
+
+
+            <small>
+
+                EVENTO ESPECIAL
+
+            </small>
+
+
+            <strong>
+
+                ¡BATALLA CHAPUCERA!
+
+            </strong>
+
+
+        </div>
+
+
+
+        <div
+            class="eventTimer"
+            id="eventTimer">
+
+            10.0
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         PELEA
+    ================================================== -->
+
+    <div class="battleArea">
+
+
+
+        <!-- rival -->
+
+        <div class="fighter enemyFighter">
+
+
+            <div class="fighterName">
+
+                RIVAL
+
+            </div>
+
+
+            <div class="healthBar">
+
+
+                <div
+                    class="healthFill enemyHealth"
+                    id="enemyHealth">
+                </div>
+
+
+            </div>
+
+
+            <div class="fighterStage">
+
+
+                <img
+
+                    id="enemyImage"
+
+                    class="enemyImage"
+
+                    src="ChatGPT%20Image%208%20ago%202026,%2001_24_35.png"
+
+                    alt="Rival"
+
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- VS -->
+
+        <div class="versus">
+
+            VS
+
+        </div>
+
+
+
+        <!-- Chapucero -->
+
+        <div class="fighter playerFighter">
+
+
+            <div class="fighterName">
+
+                CHAPUCERO
+
+            </div>
+
+
+            <div class="healthBar">
+
+
+                <div
+                    class="healthFill playerHealth"
+                    id="playerHealth">
+                </div>
+
+
+            </div>
+
+
+            <div class="fighterStage">
+
+
+                <img
+
+                    class="eventPlayerImage"
+
+                    src="chapucero%20dado.png"
+
+                    alt="Chapucero"
+
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CLICK
+    ================================================== -->
+
+    <button
+        class="tapZone"
+        id="tapZone"
+        onclick="eventTap()">
+
+
+        <div
+            class="tapIcon"
+            id="tapIcon">
+
+            👆
+
+        </div>
+
+
+        <strong
+            id="tapText">
+
+            ¡PICA AQUÍ!
+
+        </strong>
+
+
+        <span>
+
+            Tan rápido como puedas
+
+        </span>
+
+
+    </button>
+
+
+
+    <div class="hitCounter">
+
+
+        GOLPES
+
+
+        <strong
+            id="hitCounter">
+
+            0
+
+        </strong>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         RESULTADO
+    ================================================== -->
+
+    <div
+        class="eventResult"
+        id="eventResult">
+
+
+        <div class="resultCard">
+
+
+            <div
+                class="resultEmoji"
+                id="resultEmoji">
+
+                🏆
+
+            </div>
+
+
+            <h2
+                id="resultTitle">
+
+                ¡VICTORIA!
+
+            </h2>
+
+
+            <p
+                id="resultText">
+
+                Chapucero ganó la batalla.
+
+            </p>
+
+
+
+            <div
+                class="xpReward"
+                id="xpReward">
+
+
+                <span>
+
+                    EXPERIENCIA
+
+                </span>
+
+
+                <strong>
+
+                    +100%
+
+                </strong>
+
+
+            </div>
+
+
+
+            <button
+                class="claimButton"
+                id="claimButton"
+                onclick="claimEventReward()">
+
+                RECLAMAR EXP
+
+            </button>
+
+
+
+            <button
+                class="retryButton"
+                id="retryButton"
+                onclick="startBattle()">
+
+                INTENTAR OTRA VEZ
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- =====================================================
+     BOTÓN EXTERNO EVENTO
+===================================================== -->
+
+<button
+    class="eventDevButton"
+    onclick="openEvent()">
+
+    ⚔ INICIAR EVENTO
+
+</button>
+
 
 
 <script>
@@ -1702,40 +3831,78 @@ body{
 
 function showScreen(screen){
 
+
     const mapScreen =
-        document.getElementById("mapScreen");
+        document.getElementById(
+            "mapScreen"
+        );
+
 
     const characterScreen =
-        document.getElementById("characterScreen");
+        document.getElementById(
+            "characterScreen"
+        );
+
 
     const mapTab =
-        document.getElementById("mapTab");
+        document.getElementById(
+            "mapTab"
+        );
+
 
     const characterTab =
-        document.getElementById("characterTab");
+        document.getElementById(
+            "characterTab"
+        );
 
 
     if(screen === "map"){
 
-        mapScreen.classList.add("active");
 
-        characterScreen.classList.remove("active");
+        mapScreen
+            .classList
+            .add("active");
 
-        mapTab.classList.add("active");
 
-        characterTab.classList.remove("active");
+        characterScreen
+            .classList
+            .remove("active");
+
+
+        mapTab
+            .classList
+            .add("active");
+
+
+        characterTab
+            .classList
+            .remove("active");
+
 
     }
 
     else{
 
-        characterScreen.classList.add("active");
 
-        mapScreen.classList.remove("active");
+        characterScreen
+            .classList
+            .add("active");
 
-        characterTab.classList.add("active");
 
-        mapTab.classList.remove("active");
+        mapScreen
+            .classList
+            .remove("active");
+
+
+        characterTab
+            .classList
+            .add("active");
+
+
+        mapTab
+            .classList
+            .remove("active");
+
 
     }
 
@@ -1748,18 +3915,28 @@ function showScreen(screen){
 
 function openCustomizer(){
 
+
     document
-        .getElementById("customizer")
-        .classList.add("open");
+        .getElementById(
+            "customizer"
+        )
+        .classList
+        .add("open");
+
 
 }
 
 
 function closeCustomizer(){
 
+
     document
-        .getElementById("customizer")
-        .classList.remove("open");
+        .getElementById(
+            "customizer"
+        )
+        .classList
+        .remove("open");
+
 
 }
 
@@ -1771,172 +3948,1110 @@ function closeCustomizer(){
 let helmetActive = false;
 
 
-function setHelmet(active,button){
+function setHelmet(
+    active,
+    button
+){
 
-    helmetActive = active;
+
+    helmetActive =
+        active;
 
 
     const profileHelmet =
-        document.getElementById("profileHelmet");
+        document.getElementById(
+            "profileHelmet"
+        );
+
 
     const previewHelmet =
-        document.getElementById("previewHelmet");
+        document.getElementById(
+            "previewHelmet"
+        );
 
 
     if(active){
 
-        profileHelmet.classList.add("active");
 
-        previewHelmet.classList.add("active");
+        profileHelmet
+            .classList
+            .add("active");
+
+
+        previewHelmet
+            .classList
+            .add("active");
+
 
     }
 
     else{
 
-        profileHelmet.classList.remove("active");
 
-        previewHelmet.classList.remove("active");
+        profileHelmet
+            .classList
+            .remove("active");
+
+
+        previewHelmet
+            .classList
+            .remove("active");
+
 
     }
 
 
     button
         .parentElement
-        .querySelectorAll(".option")
-        .forEach(option => {
+        .querySelectorAll(
+            ".option"
+        )
+        .forEach(
+            option => {
 
-            option.classList.remove("selected");
+                option
+                    .classList
+                    .remove(
+                        "selected"
+                    );
 
-        });
+            }
+        );
 
 
-    button.classList.add("selected");
+    button
+        .classList
+        .add("selected");
+
 
 }
 
 
 /* =====================================================
-   COLORES DEL PERSONAJE PNG
-
-   No hay morado.
+   COLOR PERSONAJE
 ===================================================== */
 
-function changeCharacterColor(type,button){
+let selectedColor =
+    "original";
 
-    let filter = "none";
+
+function changeCharacterColor(
+    type,
+    button
+){
 
 
-    if(type === "yellow"){
+    selectedColor =
+        type;
+
+
+    let filter =
+        "none";
+
+
+    if(
+        type ===
+        "yellow"
+    ){
+
 
         filter =
         "sepia(.45) saturate(1.8) hue-rotate(350deg) brightness(1.02)";
 
+
     }
 
 
-    if(type === "green"){
+    if(
+        type ===
+        "green"
+    ){
+
 
         filter =
         "sepia(.45) saturate(1.5) hue-rotate(65deg) brightness(.95)";
 
+
     }
 
 
-    if(type === "blue"){
+    if(
+        type ===
+        "blue"
+    ){
+
 
         filter =
         "sepia(.4) saturate(1.4) hue-rotate(155deg) brightness(1.02)";
+
 
     }
 
 
     document
-        .querySelectorAll(".characterImage")
-        .forEach(character => {
+        .querySelectorAll(
+            ".characterImage"
+        )
+        .forEach(
+            character => {
 
-            character.style.filter =
-                filter === "none"
 
-                ? "drop-shadow(0 8px 5px rgba(0,0,0,.25))"
+                character
+                    .style
+                    .filter =
 
-                : filter +
-                " drop-shadow(0 8px 5px rgba(0,0,0,.25))";
+                    filter === "none"
 
-        });
+                    ?
+
+                    "drop-shadow(0 8px 5px rgba(0,0,0,.25))"
+
+                    :
+
+                    filter +
+
+                    " drop-shadow(0 8px 5px rgba(0,0,0,.25))";
+
+
+            }
+        );
 
 
     button
         .parentElement
-        .querySelectorAll(".option")
-        .forEach(option => {
+        .querySelectorAll(
+            ".option"
+        )
+        .forEach(
+            option => {
 
-            option.classList.remove("selected");
 
-        });
+                option
+                    .classList
+                    .remove(
+                        "selected"
+                    );
 
 
-    button.classList.add("selected");
+            }
+        );
+
+
+    button
+        .classList
+        .add("selected");
+
 
 }
 
 
 /* =====================================================
-   GUARDAR
+   GUARDAR PERSONALIZACIÓN
 ===================================================== */
 
 function saveChanges(){
 
-    localStorage.setItem(
-        "chapuceroHelmet",
-        helmetActive
-    );
+
+    localStorage
+        .setItem(
+
+            "chapuceroHelmet",
+
+            helmetActive
+
+        );
+
+
+    localStorage
+        .setItem(
+
+            "chapuceroColor",
+
+            selectedColor
+
+        );
 
 
     closeCustomizer();
+
 
 }
 
 
 /* =====================================================
-   ABRIR MAPA EN NIVEL 0
+   EVENTO
 ===================================================== */
 
-window.addEventListener(
+let eventRunning =
+    false;
+
+
+let eventTime =
+    10;
+
+
+let eventHits =
+    0;
+
+
+let enemyHP =
+    100;
+
+
+let eventInterval =
+    null;
+
+
+/*
+   4% por golpe.
+
+   25 golpes =
+   victoria.
+*/
+
+const DAMAGE_PER_HIT =
+    4;
+
+
+/* =====================================================
+   ABRIR EVENTO
+===================================================== */
+
+function openEvent(){
+
+
+    document
+        .getElementById(
+            "eventScreen"
+        )
+        .classList
+        .add("open");
+
+
+    startBattle();
+
+
+}
+
+
+/* =====================================================
+   CERRAR EVENTO
+===================================================== */
+
+function closeEvent(){
+
+
+    clearInterval(
+        eventInterval
+    );
+
+
+    eventRunning =
+        false;
+
+
+    document
+        .getElementById(
+            "eventScreen"
+        )
+        .classList
+        .remove("open");
+
+
+}
+
+
+/* =====================================================
+   INICIAR BATALLA
+===================================================== */
+
+function startBattle(){
+
+
+    clearInterval(
+        eventInterval
+    );
+
+
+    eventRunning =
+        true;
+
+
+    eventTime =
+        10;
+
+
+    eventHits =
+        0;
+
+
+    enemyHP =
+        100;
+
+
+    document
+        .getElementById(
+            "enemyHealth"
+        )
+        .style
+        .width =
+        "100%";
+
+
+    document
+        .getElementById(
+            "playerHealth"
+        )
+        .style
+        .width =
+        "100%";
+
+
+    document
+        .getElementById(
+            "hitCounter"
+        )
+        .textContent =
+        "0";
+
+
+    document
+        .getElementById(
+            "eventTimer"
+        )
+        .textContent =
+        "10.0";
+
+
+    document
+        .getElementById(
+            "eventResult"
+        )
+        .classList
+        .remove("show");
+
+
+    const startTime =
+        Date.now();
+
+
+    eventInterval =
+        setInterval(
+
+            function(){
+
+
+                const elapsed =
+
+                    (
+                        Date.now()
+                        -
+                        startTime
+                    )
+
+                    /
+
+                    1000;
+
+
+                eventTime =
+
+                    Math.max(
+
+                        0,
+
+                        10 -
+                        elapsed
+
+                    );
+
+
+                document
+                    .getElementById(
+                        "eventTimer"
+                    )
+                    .textContent =
+
+                    eventTime
+                    .toFixed(1);
+
+
+
+                /*
+                   rival también
+                   hace daño lentamente
+                */
+
+                const playerHP =
+
+                    Math.max(
+
+                        0,
+
+                        100 -
+                        elapsed * 5
+
+                    );
+
+
+                document
+                    .getElementById(
+                        "playerHealth"
+                    )
+                    .style
+                    .width =
+
+                    playerHP +
+                    "%";
+
+
+                if(
+                    eventTime <= 0
+                ){
+
+
+                    finishBattle(
+                        false
+                    );
+
+
+                }
+
+
+            },
+
+            50
+
+        );
+
+
+}
+
+
+/* =====================================================
+   GOLPE
+===================================================== */
+
+function eventTap(){
+
+
+    if(
+        !eventRunning
+    ){
+
+        return;
+
+    }
+
+
+    eventHits++;
+
+
+    enemyHP -=
+        DAMAGE_PER_HIT;
+
+
+    enemyHP =
+
+        Math.max(
+
+            0,
+
+            enemyHP
+
+        );
+
+
+    document
+        .getElementById(
+            "hitCounter"
+        )
+        .textContent =
+
+        eventHits;
+
+
+    document
+        .getElementById(
+            "enemyHealth"
+        )
+        .style
+        .width =
+
+        enemyHP +
+        "%";
+
+
+
+    /* rival */
+
+    const enemy =
+
+        document
+        .getElementById(
+            "enemyImage"
+        );
+
+
+    enemy
+        .classList
+        .remove(
+            "enemyHit"
+        );
+
+
+    void enemy.offsetWidth;
+
+
+    enemy
+        .classList
+        .add(
+            "enemyHit"
+        );
+
+
+
+    /* Chapucero */
+
+    const player =
+
+        document
+        .querySelector(
+            ".eventPlayerImage"
+        );
+
+
+    player
+        .classList
+        .remove(
+            "playerAttack"
+        );
+
+
+    void player.offsetWidth;
+
+
+    player
+        .classList
+        .add(
+            "playerAttack"
+        );
+
+
+
+    if(
+        enemyHP <= 0
+    ){
+
+
+        finishBattle(
+            true
+        );
+
+
+    }
+
+
+}
+
+
+/* =====================================================
+   RESULTADO
+===================================================== */
+
+function finishBattle(
+    won
+){
+
+
+    if(
+        !eventRunning
+    ){
+
+        return;
+
+    }
+
+
+    eventRunning =
+        false;
+
+
+    clearInterval(
+        eventInterval
+    );
+
+
+    const result =
+        document.getElementById(
+            "eventResult"
+        );
+
+
+    const title =
+        document.getElementById(
+            "resultTitle"
+        );
+
+
+    const text =
+        document.getElementById(
+            "resultText"
+        );
+
+
+    const emoji =
+        document.getElementById(
+            "resultEmoji"
+        );
+
+
+    const xp =
+        document.getElementById(
+            "xpReward"
+        );
+
+
+    const claim =
+        document.getElementById(
+            "claimButton"
+        );
+
+
+    const retry =
+        document.getElementById(
+            "retryButton"
+        );
+
+
+    if(won){
+
+
+        emoji
+            .textContent =
+            "🏆";
+
+
+        title
+            .textContent =
+            "¡VICTORIA!";
+
+
+        text
+            .textContent =
+
+            "¡Chapucero ganó! El premio de este evento te lleva directamente al nivel 3.";
+
+
+        xp
+            .style
+            .display =
+            "flex";
+
+
+        claim
+            .style
+            .display =
+            "block";
+
+
+        retry
+            .style
+            .display =
+            "none";
+
+
+    }
+
+    else{
+
+
+        emoji
+            .textContent =
+            "😵";
+
+
+        title
+            .textContent =
+            "¡CASI!";
+
+
+        text
+            .textContent =
+
+            "No derrotaste al rival antes de que terminara el tiempo.";
+
+
+        xp
+            .style
+            .display =
+            "none";
+
+
+        claim
+            .style
+            .display =
+            "none";
+
+
+        retry
+            .style
+            .display =
+            "block";
+
+
+    }
+
+
+    result
+        .classList
+        .add(
+            "show"
+        );
+
+
+}
+
+
+/* =====================================================
+   RECLAMAR RECOMPENSA
+===================================================== */
+
+function claimEventReward(){
+
+
+    localStorage
+        .setItem(
+
+            "chapuceroLevel",
+
+            "3"
+
+        );
+
+
+    localStorage
+        .setItem(
+
+            "chapuceroXP",
+
+            "100"
+
+        );
+
+
+    updateLevelToThree();
+
+
+    document
+        .getElementById(
+            "eventResult"
+        )
+        .classList
+        .remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "eventScreen"
+        )
+        .classList
+        .remove(
+            "open"
+        );
+
+
+    showScreen(
+        "map"
+    );
+
+
+    const map =
+
+        document
+        .getElementById(
+            "mapScreen"
+        );
+
+
+    map
+        .scrollTo({
+
+            top:
+
+                map.scrollHeight
+                -
+                620,
+
+            behavior:
+                "smooth"
+
+        });
+
+
+}
+
+
+/* =====================================================
+   NIVEL 3
+===================================================== */
+
+function updateLevelToThree(){
+
+
+    const level0 =
+
+        document
+        .getElementById(
+            "level0"
+        );
+
+
+    const level1 =
+
+        document
+        .getElementById(
+            "level1"
+        );
+
+
+    const level2 =
+
+        document
+        .getElementById(
+            "level2"
+        );
+
+
+    const level3 =
+
+        document
+        .getElementById(
+            "level3"
+        );
+
+
+
+    level0
+        .className =
+        "tile unlocked";
+
+
+    level0
+        .textContent =
+        "0";
+
+
+
+    level1
+        .className =
+        "tile unlocked";
+
+
+    level1
+        .textContent =
+        "1";
+
+
+
+    level2
+        .className =
+        "tile unlocked";
+
+
+    level2
+        .textContent =
+        "2";
+
+
+
+    level3
+        .className =
+        "tile current levelUpFlash";
+
+
+    level3
+        .textContent =
+        "3";
+
+
+
+    const character =
+
+        document
+        .getElementById(
+            "mapCharacterHolder"
+        );
+
+
+    character
+        .style
+        .bottom =
+        "342px";
+
+
+    character
+        .style
+        .left =
+        "299px";
+
+
+    character
+        .style
+        .transform =
+        "translateX(-50%)";
+
+
+}
+
+
+/* =====================================================
+   CARGAR PROGRESO
+===================================================== */
+
+function loadEventProgress(){
+
+
+    const savedLevel =
+
+        Number(
+
+            localStorage
+            .getItem(
+                "chapuceroLevel"
+            )
+
+        );
+
+
+    if(
+        savedLevel >= 3
+    ){
+
+
+        updateLevelToThree();
+
+
+    }
+
+
+}
+
+
+/* =====================================================
+   CARGAR PERSONALIZACIÓN
+===================================================== */
+
+function loadCustomization(){
+
+
+    const savedHelmet =
+
+        localStorage
+        .getItem(
+            "chapuceroHelmet"
+        );
+
+
+    if(
+        savedHelmet ===
+        "true"
+    ){
+
+
+        helmetActive =
+            true;
+
+
+        document
+            .getElementById(
+                "profileHelmet"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+
+        document
+            .getElementById(
+                "previewHelmet"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+
+        document
+            .getElementById(
+                "noHelmetButton"
+            )
+            .classList
+            .remove(
+                "selected"
+            );
+
+
+        document
+            .getElementById(
+                "helmetButton"
+            )
+            .classList
+            .add(
+                "selected"
+            );
+
+
+    }
+
+
+}
+
+
+/* =====================================================
+   AL CARGAR
+===================================================== */
+
+window
+.addEventListener(
+
     "load",
+
     function(){
 
-        const map =
-            document.getElementById("mapScreen");
 
+        const map =
+
+            document
+            .getElementById(
+                "mapScreen"
+            );
+
+
+        /*
+           empieza abajo
+        */
 
         map.scrollTop =
             map.scrollHeight;
 
 
-        const savedHelmet =
-            localStorage.getItem(
-                "chapuceroHelmet"
-            );
+        loadEventProgress();
 
 
-        if(savedHelmet === "true"){
+        loadCustomization();
 
-            helmetActive = true;
-
-            document
-                .getElementById("profileHelmet")
-                .classList.add("active");
-
-            document
-                .getElementById("previewHelmet")
-                .classList.add("active");
-
-        }
 
     }
+
 );
 
 </script>
 
+
 </body>
+
 </html>
